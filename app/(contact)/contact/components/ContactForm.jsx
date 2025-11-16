@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -17,38 +17,72 @@ const ContactForm = ({ onSubmit }) => {
 
   const formRef = useRef();
 
+  // Initialize EmailJS on component mount
+  useEffect(() => {
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    if (publicKey) {
+      emailjs.init(publicKey);
+    }
+  }, []);
+
   const onSubmitHandler = async (data) => {
     try {
+      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+      // Check if environment variables are available
+      if (!serviceId || !templateId || !publicKey) {
+        console.error('EmailJS configuration missing:', {
+          serviceId: !!serviceId,
+          templateId: !!templateId,
+          publicKey: !!publicKey
+        });
+        toast.error("Email service is not configured. Please contact me directly at chapokumih@gmail.com");
+        return;
+      }
+
+      // Validate form data
+      if (!formRef.current) {
+        toast.error("Form error. Please refresh the page and try again.");
+        return;
+      }
+
       // Send email via EmailJS
-      if (
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID &&
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID &&
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-      ) {
-        await emailjs.sendForm(
-          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-          formRef.current,
-          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-        );
-        
-        // Show success toast
-        toast.success("Message sent successfully! I'll get back to you soon.");
-        
-        // Reset form
-        reset();
-        
-        // Call parent onSubmit if provided
-        if (onSubmit) {
-          await onSubmit(data);
-        }
-      } else {
-        console.warn('EmailJS environment variables not configured');
-        toast.error("Email service is not configured. Please contact me directly.");
+      const result = await emailjs.sendForm(
+        serviceId,
+        templateId,
+        formRef.current,
+        publicKey
+      );
+      
+      console.log('Email sent successfully:', result);
+      
+      // Show success toast
+      toast.success("Message sent successfully! I'll get back to you soon.");
+      
+      // Reset form
+      reset();
+      
+      // Call parent onSubmit if provided
+      if (onSubmit) {
+        await onSubmit(data);
       }
     } catch (error) {
       console.error('Error sending email:', error);
-      toast.error("Failed to send message. Please try again later or contact me directly.");
+      
+      // Provide more specific error messages
+      let errorMessage = "Failed to send message. ";
+      
+      if (error.text) {
+        errorMessage += error.text;
+      } else if (error.message) {
+        errorMessage += error.message;
+      } else {
+        errorMessage += "Please try again later or contact me directly at chapokumih@gmail.com";
+      }
+      
+      toast.error(errorMessage);
     }
   };
 
