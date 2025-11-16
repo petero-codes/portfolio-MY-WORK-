@@ -28,18 +28,19 @@ const ContactForm = ({ onSubmit }) => {
   const onSubmitHandler = async (data) => {
     console.log('Form submitted!', data);
     
-    try {
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    // Declare variables outside try block so they're accessible in catch
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
 
-      // Debug: Log environment variables (values will be visible in browser console)
-      console.log('EmailJS Configuration:', {
-        serviceId: serviceId || 'MISSING',
-        templateId: templateId || 'MISSING',
-        publicKey: publicKey ? `${publicKey.substring(0, 5)}...` : 'MISSING'
-      });
-      
+    // Debug: Log environment variables (values will be visible in browser console)
+    console.log('EmailJS Configuration:', {
+      serviceId: serviceId || 'MISSING',
+      templateId: templateId || 'MISSING',
+      publicKey: publicKey ? `${publicKey.substring(0, 5)}...` : 'MISSING'
+    });
+    
+    try {
       // Test toast immediately
       toast.info("Processing your message...");
 
@@ -89,8 +90,8 @@ const ContactForm = ({ onSubmit }) => {
         errorMessage: error?.message,
         errorStatus: error?.status,
         errorStatusText: error?.statusText,
-        serviceId,
-        templateId,
+        serviceId: serviceId || 'MISSING',
+        templateId: templateId || 'MISSING',
         publicKey: publicKey ? `${publicKey.substring(0, 5)}...` : 'MISSING'
       });
       
