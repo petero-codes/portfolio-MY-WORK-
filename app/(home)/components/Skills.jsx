@@ -122,7 +122,7 @@ const SkillsSection = () => {
                     <div className="max-w-2xl mx-auto text-center space-y-6">
                         <motion.div
                             variants={itemAnimation}
-                            className="inline-flex items-center space-x-2 bg-secondary/10 border-[1.8px] border-zinc-900/70 px-4 py-2 rounded-full text-primary backdrop-blur-sm"
+                            className="inline-flex items-center space-x-2 mirror-effect mirror-glow px-4 py-2 rounded-full text-primary"
                         >
                             <HiChip className="w-5 h-5 text-primary" />
                             <span className="text-sm font-medium text-primary">

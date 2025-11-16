@@ -43,7 +43,7 @@ const ContactForm = ({ onSubmit }) => {
               id="name"
               type="text"
               name="name"
-              placeholder="Huzaif"
+              placeholder="Your Name"
               className="rounded-lg border-primary/20 w-full"
             />
             {errors.name && (
@@ -68,7 +68,7 @@ const ContactForm = ({ onSubmit }) => {
               id="email"
               type="email"
               name="email"
-              placeholder="huzaif@example.com"
+              placeholder="your.email@example.com"
               className="rounded-lg border-primary/20 w-full"
             />
             {errors.email && (

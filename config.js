@@ -3,10 +3,10 @@ import { HiCode, HiCube, HiDatabase, HiMail, HiBriefcase } from "react-icons/hi"
 
 export const config = {
     developer: {
-        name: "Huzaif",
+        name: "Petero Mzee",
     },
     social: {
-        github: "huzaifahmedz",
+        github: "petero-codes",
         discord: "#"
     },
     NAV_ITEMS: [
@@ -21,8 +21,8 @@ export const config = {
             description: "An intelligent code review platform that uses machine learning to analyze pull requests, detect bugs, suggest optimizations, and enforce coding standards. Features real-time collaboration, automated testing integration, and comprehensive security scanning.",
             image: "/projects/project-1.webp",
             technologies: ["Python", "TensorFlow", "React", "FastAPI", "PostgreSQL", "Docker"],
-            github: "#",
-            demo: "#"
+            github: "https://github.com/petero-codes",
+            demo: "https://github.com/petero-codes"
         },
         {
             id: 2,
@@ -30,8 +30,8 @@ export const config = {
             description: "A next-generation collaborative whiteboard platform with infinite canvas, real-time synchronization, and advanced drawing tools. Supports video conferencing, screen sharing, and export to multiple formats. Built for remote teams and educators.",
             image: "/projects/project-2.webp",
             technologies: ["TypeScript", "WebRTC", "Socket.io", "Canvas API", "Node.js", "Redis"],
-            github: "#",
-            demo: "#"
+            github: "https://github.com/petero-codes",
+            demo: "https://github.com/petero-codes"
         },
         {
             id: 3,
@@ -39,8 +39,8 @@ export const config = {
             description: "A secure, transparent, and decentralized voting platform built on Ethereum. Features smart contract-based voting, anonymous ballots, real-time result tracking, and immutable audit trails. Ensures election integrity through cryptographic verification.",
             image: "/projects/project-3.webp",
             technologies: ["Solidity", "Web3.js", "React", "Ethereum", "IPFS", "MetaMask"],
-            github: "#",
-            demo: "#"
+            github: "https://github.com/petero-codes",
+            demo: "https://github.com/petero-codes"
         },
         {
             id: 4,
@@ -48,8 +48,8 @@ export const config = {
             description: "A comprehensive cloud management platform for monitoring, managing, and optimizing multi-cloud infrastructure. Features real-time metrics, cost analysis, automated scaling, and security compliance monitoring across AWS, Azure, and GCP.",
             image: "/projects/project-4.webp",
             technologies: ["Go", "Kubernetes", "Grafana", "Prometheus", "Terraform", "React"],
-            github: "#",
-            demo: "#"
+            github: "https://github.com/petero-codes",
+            demo: "https://github.com/petero-codes"
         },
         {
             id: 5,
@@ -57,8 +57,8 @@ export const config = {
             description: "An interactive web application for visualizing, training, and experimenting with neural networks. Features drag-and-drop architecture builder, real-time training visualization, model comparison tools, and export capabilities for production deployment.",
             image: "/projects/project-5.webp",
             technologies: ["Python", "TensorFlow.js", "D3.js", "Next.js", "WebGL", "TypeScript"],
-            github: "#",
-            demo: "#"
+            github: "https://github.com/petero-codes",
+            demo: "https://github.com/petero-codes"
         }
  
     ],
@@ -138,19 +138,19 @@ export const config = {
         {
             icon: <FaGithub className="w-5 h-5" />,
             label: "GitHub",
-            value: "@huzaifahmedz",
-            link: `https://github.com/huzaifahmedz`
+            value: "@petero-codes",
+            link: `https://github.com/petero-codes`
         },
         {
             icon: <HiMail className="w-5 h-5" />,
             label: "Email",
-            value: "dev.huzaif@gmail.com",
-            link: "mailto:dev.huzaif@gmail.com"
+            value: "chapokumih@gmail.com",
+            link: "mailto:chapokumih@gmail.com"
         },
         {
             icon: <FaMapPin className="w-5 h-5" />,
             label: "Location",
-            value: "India",
+            value: "Kenya",
             link: null
         }
     ]

@@ -121,22 +121,18 @@ const ProjectCard = ({ project, size }) => {
         >
             <div
                 className="
-                    bg-black
-                    border-white/30
-                    border 
+                    mirror-effect
+                    mirror-effect-hover
+                    mirror-shine
+                    mirror-border
                     p-3 sm:p-4 md:p-5
                     rounded-xl sm:rounded-2xl
-                    backdrop-blur-md 
                     cursor-pointer
                     relative overflow-hidden
                     h-full
                     w-full
                     min-h-[120px] sm:min-h-[140px]
                     flex flex-col
-                    shadow-[0_4px_6px_rgba(0,0,0,0.5),0_0_10px_rgba(255,255,255,0.05)]
-                    transition-all duration-300
-                    group-hover:border-white/60
-                    group-hover:shadow-[0_4px_6px_rgba(0,0,0,0.5),0_0_20px_rgba(255,255,255,0.1)]
                 "
             >
                 {/* Shiny overlay effect */}
@@ -233,12 +229,14 @@ const GithubProjects = () => {
     const [isLoadingMore, setIsLoadingMore] = React.useState(false);
 
     const { data, error, isLoading, mutate: revalidateData } = useSWR(
-        `${GITHUB_API_URL}?sort=updated&per_page=${ITEMS_PER_PAGE * page}`,
+        `${GITHUB_API_URL}?sort=updated&per_page=100&direction=desc`,
         fetcher,
         {
-            revalidateOnFocus: false,
-            refreshInterval: 300000,
-            shouldRetryOnError: false,
+            revalidateOnFocus: true,
+            revalidateOnReconnect: true,
+            refreshInterval: 60000, // Refresh every 1 minute
+            shouldRetryOnError: true,
+            dedupingInterval: 5000, // Dedupe requests within 5 seconds
         }
     );
 
@@ -247,11 +245,17 @@ const GithubProjects = () => {
         const filtered = data
             .filter(project => 
                 !project.fork && 
-                !project.private && 
-                (project.name.toLowerCase().includes('portfolio') || 
-                 (project.topics && project.topics.some(topic => topic.toLowerCase().includes('portfolio'))))
+                !project.private
             )
-            .sort((a, b) => b.stargazers_count - a.stargazers_count)
+            .sort((a, b) => {
+                // Sort by most recently updated first, then by stars
+                const dateA = new Date(a.updated_at);
+                const dateB = new Date(b.updated_at);
+                if (dateB.getTime() !== dateA.getTime()) {
+                    return dateB.getTime() - dateA.getTime();
+                }
+                return b.stargazers_count - a.stargazers_count;
+            })
             .slice(0, ITEMS_PER_PAGE * page);
         
         return filtered.map((project, index) => ({
@@ -284,7 +288,7 @@ const GithubProjects = () => {
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="inline-flex items-center space-x-2 bg-secondary/10 border-[1.8px] border-zinc-900/70 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-primary backdrop-blur-sm shadow-lg"
+                                className="inline-flex items-center space-x-2 mirror-effect mirror-glow px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-primary"
                             >
                                 <FaGithub className="w-4 h-4 sm:w-5 sm:h-5" />
                                 <span className="text-xs sm:text-sm font-semibold">Latest Github Projects</span>

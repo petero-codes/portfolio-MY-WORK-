@@ -59,7 +59,7 @@ const SkillsShowcase = () => {
                     variants={itemAnimation} 
                     className="flex items-center gap-2 mb-8 sm:mb-12 justify-center"
                 >
-                    <div className="inline-flex items-center space-x-2 bg-secondary/10 border-[1.8px] border-zinc-900/70 px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-primary backdrop-blur-sm shadow-lg">
+                    <div className="inline-flex items-center space-x-2 mirror-effect mirror-glow px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-primary">
                         <HiCode className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
                         <span className="text-xs sm:text-sm font-semibold text-primary">Tech Stack</span>
                     </div>
@@ -81,12 +81,12 @@ const SkillsShowcase = () => {
                     >
                         <div
                             className="
-                                bg-black
-                                border-white/30
-                                border 
+                                mirror-effect
+                                mirror-effect-hover
+                                mirror-shine
+                                mirror-border
                                 p-2.5 sm:p-4 md:p-6
                                 rounded-lg sm:rounded-xl md:rounded-2xl
-                                backdrop-blur-md 
                                 cursor-default
                                 relative overflow-hidden
                                 h-full
@@ -94,10 +94,6 @@ const SkillsShowcase = () => {
                                 min-h-[90px] sm:min-h-[120px]
                                 flex flex-col items-center justify-center
                                 box-border
-                                shadow-[0_4px_6px_rgba(0,0,0,0.5),0_0_10px_rgba(255,255,255,0.05)]
-                                transition-all duration-300
-                                group-hover:border-white/60
-                                group-hover:shadow-[0_4px_6px_rgba(0,0,0,0.5),0_0_20px_rgba(255,255,255,0.1)]
                             "
                             style={{ height: '100%' }}
                         >

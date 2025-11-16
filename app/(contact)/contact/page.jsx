@@ -54,7 +54,7 @@ const ContactPage = () => {
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: 0.2 }}
-                        className="w-full lg:w-2/3 backdrop-blur-sm bg-secondary/5 p-4 sm:p-6 rounded-2xl border border-secondary/10"
+                        className="w-full lg:w-2/3 mirror-effect mirror-glow p-4 sm:p-6 rounded-2xl"
                     >
                         <ContactForm onSubmit={handleSubmit} />
                     </motion.div>
@@ -63,7 +63,7 @@ const ContactPage = () => {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.5, delay: 0.3 }}
-                        className="w-full lg:w-1/3 backdrop-blur-sm bg-secondary/5 p-4 sm:p-6 rounded-2xl border border-secondary/10"
+                        className="w-full lg:w-1/3 mirror-effect mirror-glow p-4 sm:p-6 rounded-2xl"
                     >
                         <h3 className="text-lg sm:text-xl font-semibold mb-4 sm:mb-6 text-primary">Contact Information</h3>
                         <div className="space-y-4 sm:space-y-6">

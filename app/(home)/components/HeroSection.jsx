@@ -58,7 +58,7 @@ const HeroSection = () => {
         >
           <motion.div
             variants={itemAnimation}
-            className="inline-flex items-center space-x-2 bg-secondary/10 border-[1.8px] border-zinc-900/70 px-4 py-2 rounded-full text-primary backdrop-blur-sm"
+            className="inline-flex items-center space-x-2 mirror-effect mirror-glow px-4 py-2 rounded-full text-primary"
           >
             <HiCode className="w-5 h-5" />
             <span className="text-sm font-medium">Welcome to my portfolio</span>

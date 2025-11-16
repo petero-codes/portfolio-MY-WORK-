@@ -46,7 +46,7 @@ const ExperienceSection = () => {
                     <div className="max-w-2xl mx-auto text-center space-y-6">
                         <motion.div
                             variants={itemAnimation}
-                            className="inline-flex items-center space-x-2 bg-secondary/10 border-[1.8px] border-zinc-900/70 px-4 py-2 rounded-full text-primary backdrop-blur-sm"
+                            className="inline-flex items-center space-x-2 mirror-effect mirror-glow px-4 py-2 rounded-full text-primary"
                         >
                             <HiBriefcase className="w-5 h-5 text-primary" />
                             <span className="text-sm font-medium text-primary">
@@ -88,7 +88,7 @@ const ExperienceSection = () => {
 
                                         {/* Content */}
                                         <div className="flex-1 pb-8">
-                                            <div className="bg-black border border-white/30 rounded-2xl p-6 backdrop-blur-md shadow-[0_4px_6px_rgba(0,0,0,0.5),0_0_10px_rgba(255,255,255,0.05)] hover:border-white/60 transition-all duration-300 group relative overflow-hidden hover:shadow-[0_4px_6px_rgba(0,0,0,0.5),0_0_20px_rgba(255,255,255,0.1)]">
+                                            <div className="mirror-effect mirror-effect-hover mirror-shine mirror-border rounded-2xl p-6 group relative overflow-hidden">
                                                 {/* Shiny overlay effect */}
                                                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
                                                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent shiny-sweep" />
