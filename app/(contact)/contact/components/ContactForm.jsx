@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
+import { toast } from "sonner";
 
 const ContactForm = ({ onSubmit }) => {
   const {
@@ -15,7 +16,6 @@ const ContactForm = ({ onSubmit }) => {
   } = useForm();
 
   const formRef = useRef();
-//   console.log(`env : ${process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID}`)
 
   const onSubmitHandler = async (data) => {
     try {
@@ -25,24 +25,30 @@ const ContactForm = ({ onSubmit }) => {
         process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID &&
         process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
       ) {
-        const result = await emailjs.sendForm(
+        await emailjs.sendForm(
           process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
           process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
           formRef.current,
           process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
         );
-        console.log('Email sent successfully:', result.text);
+        
+        // Show success toast
+        toast.success("Message sent successfully! I'll get back to you soon.");
+        
+        // Reset form
+        reset();
+        
+        // Call parent onSubmit if provided
+        if (onSubmit) {
+          await onSubmit(data);
+        }
       } else {
         console.warn('EmailJS environment variables not configured');
-        // Still show success to user, but log warning
+        toast.error("Email service is not configured. Please contact me directly.");
       }
-
-      await onSubmit(data);
-      reset();
     } catch (error) {
       console.error('Error sending email:', error);
-      // Re-throw to let parent component handle error display
-      throw error;
+      toast.error("Failed to send message. Please try again later or contact me directly.");
     }
   };
 

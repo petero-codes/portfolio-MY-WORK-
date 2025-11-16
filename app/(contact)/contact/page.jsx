@@ -4,19 +4,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import BackgroundEffects from '@/components/ui/background-effects';
 import ContactForm from './components/ContactForm';
-import { toast } from 'sonner';
 import { config } from '@/config';
 
 const ContactPage = () => {
     const handleSubmit = async (formData) => {
-        try {
-            console.log('Form submitted:', formData);
-            // Email will be sent via EmailJS in ContactForm component
-            toast.success("Thank you for your message! I'll get back to you soon.");
-        } catch (error) {
-            console.error('Error submitting form:', error);
-            toast.error("Something went wrong. Please try again later.");
-        }
+        // Form submission is handled in ContactForm component
+        // This callback is optional and can be used for additional logic
+        console.log('Form submitted:', formData);
     };
 
     const contactInfo = config.contactInfo;
