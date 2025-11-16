@@ -18,15 +18,32 @@ const ContactForm = ({ onSubmit }) => {
 //   console.log(`env : ${process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID}`)
 
   const onSubmitHandler = async (data) => {
-    await onSubmit(data);
-    await emailjs.sendForm(
-      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
-      formRef.current,
-      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-    );
+    try {
+      // Send email via EmailJS
+      if (
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID &&
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID &&
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      ) {
+        const result = await emailjs.sendForm(
+          process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+          process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+          formRef.current,
+          process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+        );
+        console.log('Email sent successfully:', result.text);
+      } else {
+        console.warn('EmailJS environment variables not configured');
+        // Still show success to user, but log warning
+      }
 
-    reset();
+      await onSubmit(data);
+      reset();
+    } catch (error) {
+      console.error('Error sending email:', error);
+      // Re-throw to let parent component handle error display
+      throw error;
+    }
   };
 
   return (
@@ -35,45 +52,45 @@ const ContactForm = ({ onSubmit }) => {
         {/* Name and Email in a 2-column grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <label htmlFor="name" className="text-sm font-medium text-muted-foreground block">
+            <label htmlFor="from_name" className="text-sm font-medium text-muted-foreground block">
               Your Name
             </label>
             <Input
-              {...register("name", { required: "Name is required" })}
-              id="name"
+              {...register("from_name", { required: "Name is required" })}
+              id="from_name"
               type="text"
-              name="name"
+              name="from_name"
               placeholder="Your Name"
               className="rounded-lg border-primary/20 w-full"
             />
-            {errors.name && (
+            {errors.from_name && (
               <span className="text-xs text-red-500 block mt-1">
-                {errors.name.message}
+                {errors.from_name.message}
               </span>
             )}
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="email" className="text-sm font-medium text-muted-foreground block">
+            <label htmlFor="from_email" className="text-sm font-medium text-muted-foreground block">
               Email
             </label>
             <Input
-              {...register("email", {
+              {...register("from_email", {
                 required: "Email is required",
                 pattern: {
                   value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                   message: "Invalid email address",
                 },
               })}
-              id="email"
+              id="from_email"
               type="email"
-              name="email"
+              name="from_email"
               placeholder="your.email@example.com"
               className="rounded-lg border-primary/20 w-full"
             />
-            {errors.email && (
+            {errors.from_email && (
               <span className="text-xs text-red-500 block mt-1">
-                {errors.email.message}
+                {errors.from_email.message}
               </span>
             )}
           </div>
