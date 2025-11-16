@@ -143,14 +143,22 @@ If you see this error, the Service ID in your environment variables doesn't matc
 ### Check Environment Variables in Vercel
 
 Make sure all three variables are set correctly in Vercel:
-- `NEXT_PUBLIC_EMAILJS_SERVICE_ID` = Your actual Service ID from EmailJS dashboard
-- `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` = Your Template ID (should be `template_18ik2gr`)
+- `NEXT_PUBLIC_EMAILJS_SERVICE_ID` = Your actual Service ID from EmailJS dashboard (e.g., `service_ly12c7v`)
+- `NEXT_PUBLIC_EMAILJS_TEMPLATE_ID` = Your actual Template ID from EmailJS dashboard (e.g., `template_8zabl5f`)
 - `NEXT_PUBLIC_EMAILJS_PUBLIC_KEY` = Your Public Key (should be `fN-_U-7Bu0HMYWeaw`)
 
+**⚠️ IMPORTANT:** The Template ID in Vercel must match the Template ID shown in your EmailJS dashboard!
+
 **To verify your IDs:**
-1. **Service ID:** EmailJS Dashboard → Email Services → Click your service → Copy the ID
-2. **Template ID:** EmailJS Dashboard → Email Templates → Click your template → Copy the ID
+1. **Service ID:** EmailJS Dashboard → Email Services → Click your service → Copy the ID (e.g., `service_ly12c7v`)
+2. **Template ID:** EmailJS Dashboard → Email Templates → Click your template → Copy the ID shown (e.g., `template_8zabl5f`)
 3. **Public Key:** EmailJS Dashboard → Account → General → Copy Public Key
+
+**Common Issue:** If you see "Service ID not found" error, check:
+- ✅ Service ID exists in EmailJS (you confirmed `service_ly12c7v` exists)
+- ✅ Template ID matches between Vercel and EmailJS dashboard
+- ✅ All IDs are from the same EmailJS account
+- ✅ Site has been redeployed after setting environment variables
 
 After updating, **redeploy** your site in Vercel.
 
