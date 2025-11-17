@@ -51,10 +51,14 @@ export async function POST(request) {
     const sanitizedMessage = sanitize(message).replace(/\n/g, '<br>');
 
     // Send both emails in parallel for better performance
-    console.log('Attempting to send emails via Resend...');
+    console.log('=== EMAIL SENDING DEBUG ===');
     console.log('API Key present:', !!apiKey);
-    console.log('To owner:', 'chapokumih@gmail.com');
-    console.log('To sender (auto-reply):', from_email);
+    console.log('Sender name:', from_name);
+    console.log('Sender email (raw):', from_email);
+    console.log('Sender email (sanitized):', sanitizedEmail);
+    console.log('Owner email:', 'chapokumih@gmail.com');
+    console.log('Auto-reply will be sent to:', from_email);
+    console.log('===========================');
     
     // Send both emails simultaneously
     const [ownerEmail, autoReply] = await Promise.all([
@@ -99,7 +103,7 @@ export async function POST(request) {
       // Automated reply to sender
       resend.emails.send({
         from: 'Portfolio Contact <onboarding@resend.dev>',
-        to: [from_email], // Must be an array
+        to: [from_email], // Sender's email address from the form
         subject: 'Thank you for reaching out!',
         html: `
           <div style="font-family: system-ui, sans-serif, Arial; font-size: 14px; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
@@ -140,6 +144,7 @@ export async function POST(request) {
     }
 
     console.log('✅ Owner email sent successfully! Email ID:', ownerEmail.data?.id);
+    console.log('Owner email sent to: chapokumih@gmail.com');
 
     if (autoReply.error) {
       console.error('❌ Resend error (auto-reply):', JSON.stringify(autoReply.error, null, 2));
@@ -148,9 +153,12 @@ export async function POST(request) {
         name: autoReply.error.name,
         statusCode: autoReply.error.statusCode
       });
+      console.error('Failed to send auto-reply to:', from_email);
       console.warn('⚠️ Auto-reply failed, but owner email was sent successfully');
     } else {
       console.log('✅ Auto-reply sent successfully! Email ID:', autoReply.data?.id);
+      console.log('Auto-reply sent to:', from_email);
+      console.log('Auto-reply subject: Thank you for reaching out!');
     }
 
     return NextResponse.json(
