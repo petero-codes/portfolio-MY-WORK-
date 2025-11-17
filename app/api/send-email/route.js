@@ -105,55 +105,79 @@ export async function POST(request) {
     console.log('Owner email sent successfully! Email ID:', ownerEmail.data?.id);
 
     // Send automated response to the sender
-    const autoReply = await resend.emails.send({
-      from: 'Petero Mzee <onboarding@resend.dev>',
-      to: [from_email],
-      subject: 'Thank you for reaching out!',
-      html: `
-        <div style="font-family: system-ui, sans-serif, Arial; font-size: 14px; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
-          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
-            <h1 style="color: white; margin: 0; font-size: 24px;">Thank You, ${sanitizedName}!</h1>
-          </div>
-          <div style="background: #ffffff; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-            <p style="font-size: 16px; color: #333; margin-bottom: 20px;">
-              It's great hearing from you! I've received your message and I'll be back to you in a minute.
-            </p>
-            <p style="font-size: 14px; color: #666; margin-bottom: 20px;">
-              I typically respond within 24 hours, so you can expect to hear from me soon.
-            </p>
-            <div style="border-top: 1px solid #eee; padding-top: 20px; margin-top: 20px;">
-              <p style="font-size: 14px; color: #999; margin: 0;">
-                Best regards,<br>
-                <strong style="color: #667eea;">Petero Mzee</strong><br>
-                <span style="color: #999;">Full Stack Developer</span>
+    console.log('Sending automated reply to:', from_email);
+    
+    try {
+      const autoReply = await resend.emails.send({
+        from: 'Portfolio Contact <onboarding@resend.dev>',
+        to: from_email,
+        subject: 'Thank you for reaching out!',
+        html: `
+          <div style="font-family: system-ui, sans-serif, Arial; font-size: 14px; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+              <h1 style="color: white; margin: 0; font-size: 24px;">Thank You, ${sanitizedName}!</h1>
+            </div>
+            <div style="background: #ffffff; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+              <p style="font-size: 16px; color: #333; margin-bottom: 20px;">
+                It's great hearing from you! I've received your message and I'll be back to you in a minute.
               </p>
+              <p style="font-size: 14px; color: #666; margin-bottom: 20px;">
+                I typically respond within 24 hours, so you can expect to hear from me soon.
+              </p>
+              <div style="border-top: 1px solid #eee; padding-top: 20px; margin-top: 20px;">
+                <p style="font-size: 14px; color: #999; margin: 0;">
+                  Best regards,<br>
+                  <strong style="color: #667eea;">Petero Mzee</strong><br>
+                  <span style="color: #999;">Full Stack Developer</span>
+                </p>
+              </div>
+            </div>
+            <div style="text-align: center; padding: 20px; color: #999; font-size: 12px;">
+              <p style="margin: 0;">This is an automated response. Please do not reply to this email.</p>
+              <p style="margin: 5px 0 0 0;">If you have any urgent inquiries, feel free to reach out directly.</p>
             </div>
           </div>
-          <div style="text-align: center; padding: 20px; color: #999; font-size: 12px;">
-            <p style="margin: 0;">This is an automated response. Please do not reply to this email.</p>
-            <p style="margin: 5px 0 0 0;">If you have any urgent inquiries, feel free to reach out directly.</p>
-          </div>
-        </div>
-      `,
-    });
+        `,
+      });
 
-    if (autoReply.error) {
-      console.error('Resend error (auto-reply):', JSON.stringify(autoReply.error, null, 2));
-      // Don't fail the request if auto-reply fails, just log it
-      console.warn('Auto-reply failed, but owner email was sent successfully');
-    } else {
-      console.log('Auto-reply sent successfully! Email ID:', autoReply.data?.id);
+      if (autoReply.error) {
+        console.error('Resend error (auto-reply):', JSON.stringify(autoReply.error, null, 2));
+        console.error('Auto-reply error details:', {
+          message: autoReply.error.message,
+          name: autoReply.error.name,
+          statusCode: autoReply.error.statusCode
+        });
+        // Don't fail the request if auto-reply fails, but log it clearly
+        console.warn('⚠️ Auto-reply failed, but owner email was sent successfully');
+      } else {
+        console.log('✅ Auto-reply sent successfully! Email ID:', autoReply.data?.id);
+      }
+
+      return NextResponse.json(
+        { 
+          success: true, 
+          message: 'Email sent successfully', 
+          ownerEmailId: ownerEmail.data?.id,
+          autoReplyId: autoReply.data?.id,
+          autoReplySent: !autoReply.error
+        },
+        { status: 200 }
+      );
+    } catch (autoReplyError) {
+      console.error('Exception while sending auto-reply:', autoReplyError);
+      // Still return success since owner email was sent
+      return NextResponse.json(
+        { 
+          success: true, 
+          message: 'Email sent successfully (auto-reply failed)', 
+          ownerEmailId: ownerEmail.data?.id,
+          autoReplySent: false,
+          warning: 'Auto-reply could not be sent'
+        },
+        { status: 200 }
+      );
     }
 
-    return NextResponse.json(
-      { 
-        success: true, 
-        message: 'Email sent successfully', 
-        ownerEmailId: ownerEmail.data?.id,
-        autoReplyId: autoReply.data?.id 
-      },
-      { status: 200 }
-    );
   } catch (error) {
     console.error('Email API error:', error);
     return NextResponse.json(
