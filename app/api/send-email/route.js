@@ -1,6 +1,7 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
+// API route for sending contact form emails
 export async function POST(request) {
   try {
     // Check if API key is configured
