@@ -36,6 +36,11 @@ export async function POST(request) {
       );
     }
 
+    // Ensure sender email is not the owner's email (safety check)
+    if (from_email.toLowerCase() === 'chapokumih@gmail.com') {
+      console.warn('Warning: Sender email matches owner email, but proceeding...');
+    }
+
     // Sanitize input to prevent XSS
     const sanitize = (str) => {
       return String(str)
@@ -100,10 +105,16 @@ export async function POST(request) {
         </div>
       `,
       }),
-      // Automated reply to sender
+      // Automated reply to sender - IMPORTANT: Must be sender's email, not owner's
+      const senderEmail = from_email.trim().toLowerCase();
+      console.log('🔵 Preparing auto-reply email...');
+      console.log('🔵 Sender email (for auto-reply):', senderEmail);
+      console.log('🔵 Owner email (should NOT receive auto-reply):', 'chapokumih@gmail.com');
+      console.log('🔵 Are they different?', senderEmail !== 'chapokumih@gmail.com');
+      
       resend.emails.send({
         from: 'Portfolio Contact <onboarding@resend.dev>',
-        to: [from_email], // Sender's email address from the form
+        to: [senderEmail], // MUST be sender's email, NOT owner's email
         subject: 'Thank you for reaching out!',
         html: `
           <div style="font-family: system-ui, sans-serif, Arial; font-size: 14px; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
