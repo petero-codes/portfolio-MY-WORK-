@@ -121,7 +121,7 @@ export const config = {
         {
             position: "Full Stack Developer",
             company: "Tekisky",
-            period: "2023 - 2024",
+            period: "2024 - Present",
             location: "Remote",
             description: "Developed and maintained full-stack web applications, working on both frontend and backend systems. Collaborated with cross-functional teams to deliver robust software solutions.",
             responsibilities: [
