@@ -50,14 +50,14 @@ export async function POST(request) {
     const sanitizedEmail = sanitize(from_email);
     const sanitizedMessage = sanitize(message).replace(/\n/g, '<br>');
 
-    // Send email using Resend
+    // Send email to portfolio owner (chapokumih@gmail.com)
     console.log('Attempting to send email via Resend...');
     console.log('API Key present:', !!apiKey);
-    console.log('To:', 'chapokumih@gmail.com');
-    console.log('From:', from_email);
+    console.log('To owner:', 'chapokumih@gmail.com');
+    console.log('From sender:', from_email);
     
-    const { data, error } = await resend.emails.send({
-      from: 'Portfolio Contact <onboarding@resend.dev>', // This will be your verified domain later
+    const ownerEmail = await resend.emails.send({
+      from: 'Portfolio Contact <onboarding@resend.dev>',
       to: ['chapokumih@gmail.com'],
       replyTo: from_email,
       subject: `New Message from ${sanitizedName}`,
@@ -94,21 +94,64 @@ export async function POST(request) {
       `,
     });
 
-    if (error) {
-      console.error('Resend error details:', JSON.stringify(error, null, 2));
-      console.error('Error type:', typeof error);
-      console.error('Error message:', error.message);
+    if (ownerEmail.error) {
+      console.error('Resend error (owner email):', JSON.stringify(ownerEmail.error, null, 2));
       return NextResponse.json(
-        { error: 'Failed to send email', details: error.message || JSON.stringify(error) },
+        { error: 'Failed to send email', details: ownerEmail.error.message || JSON.stringify(ownerEmail.error) },
         { status: 500 }
       );
     }
 
-    console.log('Email sent successfully! Resend response:', JSON.stringify(data, null, 2));
-    console.log('Email ID:', data?.id);
+    console.log('Owner email sent successfully! Email ID:', ownerEmail.data?.id);
+
+    // Send automated response to the sender
+    const autoReply = await resend.emails.send({
+      from: 'Petero Mzee <onboarding@resend.dev>',
+      to: [from_email],
+      subject: 'Thank you for reaching out!',
+      html: `
+        <div style="font-family: system-ui, sans-serif, Arial; font-size: 14px; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto;">
+          <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 30px; text-align: center; border-radius: 10px 10px 0 0;">
+            <h1 style="color: white; margin: 0; font-size: 24px;">Thank You, ${sanitizedName}!</h1>
+          </div>
+          <div style="background: #ffffff; padding: 30px; border-radius: 0 0 10px 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+            <p style="font-size: 16px; color: #333; margin-bottom: 20px;">
+              It's great hearing from you! I've received your message and I'll be back to you in a minute.
+            </p>
+            <p style="font-size: 14px; color: #666; margin-bottom: 20px;">
+              I typically respond within 24 hours, so you can expect to hear from me soon.
+            </p>
+            <div style="border-top: 1px solid #eee; padding-top: 20px; margin-top: 20px;">
+              <p style="font-size: 14px; color: #999; margin: 0;">
+                Best regards,<br>
+                <strong style="color: #667eea;">Petero Mzee</strong><br>
+                <span style="color: #999;">Full Stack Developer</span>
+              </p>
+            </div>
+          </div>
+          <div style="text-align: center; padding: 20px; color: #999; font-size: 12px;">
+            <p style="margin: 0;">This is an automated response. Please do not reply to this email.</p>
+            <p style="margin: 5px 0 0 0;">If you have any urgent inquiries, feel free to reach out directly.</p>
+          </div>
+        </div>
+      `,
+    });
+
+    if (autoReply.error) {
+      console.error('Resend error (auto-reply):', JSON.stringify(autoReply.error, null, 2));
+      // Don't fail the request if auto-reply fails, just log it
+      console.warn('Auto-reply failed, but owner email was sent successfully');
+    } else {
+      console.log('Auto-reply sent successfully! Email ID:', autoReply.data?.id);
+    }
 
     return NextResponse.json(
-      { success: true, message: 'Email sent successfully', id: data?.id },
+      { 
+        success: true, 
+        message: 'Email sent successfully', 
+        ownerEmailId: ownerEmail.data?.id,
+        autoReplyId: autoReply.data?.id 
+      },
       { status: 200 }
     );
   } catch (error) {
