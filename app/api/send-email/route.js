@@ -55,14 +55,19 @@ export async function POST(request) {
     const sanitizedEmail = sanitize(from_email);
     const sanitizedMessage = sanitize(message).replace(/\n/g, '<br>');
 
+    // Prepare sender email for auto-reply (ensure it's not owner's email)
+    const senderEmail = from_email.trim().toLowerCase();
+    
     // Send both emails in parallel for better performance
     console.log('=== EMAIL SENDING DEBUG ===');
     console.log('API Key present:', !!apiKey);
     console.log('Sender name:', from_name);
     console.log('Sender email (raw):', from_email);
     console.log('Sender email (sanitized):', sanitizedEmail);
+    console.log('Sender email (for auto-reply):', senderEmail);
     console.log('Owner email:', 'chapokumih@gmail.com');
-    console.log('Auto-reply will be sent to:', from_email);
+    console.log('Auto-reply will be sent to:', senderEmail);
+    console.log('Are sender and owner different?', senderEmail !== 'chapokumih@gmail.com');
     console.log('===========================');
     
     // Send both emails simultaneously
@@ -106,12 +111,6 @@ export async function POST(request) {
       `,
       }),
       // Automated reply to sender - IMPORTANT: Must be sender's email, not owner's
-      const senderEmail = from_email.trim().toLowerCase();
-      console.log('🔵 Preparing auto-reply email...');
-      console.log('🔵 Sender email (for auto-reply):', senderEmail);
-      console.log('🔵 Owner email (should NOT receive auto-reply):', 'chapokumih@gmail.com');
-      console.log('🔵 Are they different?', senderEmail !== 'chapokumih@gmail.com');
-      
       resend.emails.send({
         from: 'Portfolio Contact <onboarding@resend.dev>',
         to: [senderEmail], // MUST be sender's email, NOT owner's email
