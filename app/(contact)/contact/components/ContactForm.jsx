@@ -61,7 +61,7 @@ const ContactForm = ({ onSubmit }) => {
       }
     } catch (error) {
       console.error('Error sending email:', error);
-      toast.error(error.message || "Failed to send message. Please try again later or contact me directly at chapokumih@gmail.com");
+      toast.error(error.message || "Failed to send message. Please try again later or contact me directly at waynelulu6@gmail.com");
     }
   };
 

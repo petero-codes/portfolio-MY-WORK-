@@ -79,7 +79,8 @@ const HeroSection = () => {
                 variants={textAnimation}
                 className="block text-white/60 text-2xl md:text-4xl"
               >
-I build web that builds brands.              </motion.span>
+                {config.developer.title || "Software Engineer & AI Systems Specialist"}
+              </motion.span>
             </motion.h1>
           </div>
 
@@ -87,7 +88,7 @@ I build web that builds brands.              </motion.span>
             variants={itemAnimation}
             className="text-base sm:text-md text-muted-foreground leading-relaxed max-w-2xl mx-auto"
           >
-           Full-stack builder creating digital experiences that respect humans and scale with clarity. Accessibility is my north star.
+            Software Engineer and AI Systems Specialist experienced in designing, building, and deploying scalable software applications over distributed systems, AI infrastructure, and cloud environments.
           </motion.p>
 
           <motion.div

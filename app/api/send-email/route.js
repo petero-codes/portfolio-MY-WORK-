@@ -131,8 +131,8 @@ export async function POST(request) {
               <div style="border-top: 1px solid #eee; padding-top: 20px; margin-top: 20px;">
                 <p style="font-size: 14px; color: #999; margin: 0;">
                   Best regards,<br>
-                  <strong style="color: #667eea;">Petero Mzee</strong><br>
-                  <span style="color: #999;">Full Stack Developer</span>
+                  <strong style="color: #667eea;">Peter Njuguna</strong><br>
+                  <span style="color: #999;">Software Engineer & AI Systems Specialist</span>
                 </p>
               </div>
             </div>

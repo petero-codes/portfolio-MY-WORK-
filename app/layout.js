@@ -15,13 +15,13 @@ const geistSans = localFont({
 });
 
 export const metadata = {
-  title: "Petero Mzee\'s Portfolio",
+  title: "Peter Njuguna | Software Engineer & AI Systems Specialist",
   icons:{
-icon: "/logo.png"
+    icon: "/logo.png"
   },
-  description: "Experienced fullstack developer specializing in modern web technologies. View my projects, skills, and experience.",
-  keywords: "fullstack developer,backend developer, frontend developer, web development, JavaScript,JS, C#, CSharp, React, Node.js, portfolio",
-  author: "Petero Mzee",
+  description: "Portfolio of Peter Njuguna - Software Engineer & AI Systems Specialist with proven experience in Python, FastAPI, Next.js, distributed systems, and AI infrastructure.",
+  keywords: "Peter Njuguna, Software Engineer, AI Systems Specialist, Full Stack Engineer, Python, FastAPI, Next.js, React, Node.js, PostgreSQL, Docker, Redis, Distributed Systems, Kenya",
+  author: "Peter Njuguna",
   robots: "index, follow",
 };
 
