@@ -5,7 +5,6 @@ import { motion } from 'framer-motion';
 import { HiCode } from 'react-icons/hi';
 import { FaReact, FaNodeJs, FaGithub, FaAws } from 'react-icons/fa';
 import { SiPython, SiFastapi, SiPostgresql, SiDocker, SiRedis, SiNextdotjs, SiTailwindcss, SiTypescript } from 'react-icons/si';
-import { TbBrandFramerMotion } from 'react-icons/tb';
 
 const skills = [
     { name: "Python", icon: <SiPython className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-2 sm:col-span-1 md:col-span-2 row-span-1" },
