@@ -68,7 +68,7 @@ export const config = {
         {
             id: 1,
             title: "KenGen ICT Budgeting Portal",
-            tagline: "Clean Architecture Annual Budgeting & Multi-Tier Hierarchical Approval Platform",
+            tagline: "Annual Budgeting & Multi-Tier Hierarchical Approval Platform",
             category: "Enterprise Systems & Clean Architecture",
             accent: "blue",
             attribution: "Internship Project • KenGen ICT (Kenya Electricity Generating Company)",
@@ -103,12 +103,12 @@ export const config = {
         {
             id: 2,
             title: "Seekon Apparel Storefront",
-            tagline: "Modern Footwear E-Commerce Client with Persistent Redux State",
+            tagline: "Footwear E-Commerce Storefront with Persistent Cart State",
             category: "Full-Stack & E-Commerce",
             accent: "sky",
             attribution: "Collaborative Team Project • Frontend Engineering",
             role: "Frontend Software Developer (Collaborative project with dedicated backend team)",
-            problem: "Delivering a responsive, high-performance footwear shopping experience with instant multi-faceted filtering, persistent cart state across sessions, and smooth micro-interactions.",
+            problem: "Delivering a responsive footwear shopping experience with instant multi-faceted filtering, persistent cart state across sessions, and smooth micro-interactions.",
             description: "Modern e-commerce web platform for footwear discovery and shopping. Built with React 18, Vite, and Redux Toolkit. Features responsive product catalogs with multi-faceted filtering (brand, size, price), centralized state management ensuring cart persistence across browser tabs and reloads, an interactive conversational shopping assistant widget, and an administrative dashboard interface.",
             image: "/projects/project-3.webp",
             technologies: ["React 18", "Redux Toolkit", "Tailwind CSS", "Vite", "Framer Motion", "REST APIs"],
@@ -137,7 +137,7 @@ export const config = {
         {
             id: 3,
             title: "AI-Powered Code Review Assistant",
-            tagline: "Asynchronous FastAPI & Monaco Editor Code Quality Evaluation Platform",
+            tagline: "Code Quality Inspection Service & Monaco Web Editor",
             category: "AI & Backend Engineering",
             accent: "purple",
             attribution: "Sole Developer Project • Full-Stack Microservice",
@@ -171,7 +171,7 @@ export const config = {
         {
             id: 4,
             title: "Autonomous Systems Automation Engine",
-            tagline: "Windows Desktop Automation, Low-Level Driver Wrapper & Safe State Recovery",
+            tagline: "Windows Desktop Automation & State Recovery Platform",
             category: "Systems & Python Automation",
             accent: "emerald",
             attribution: "Sole Developer Project • Systems & Process Control",
@@ -206,7 +206,7 @@ export const config = {
         {
             id: 5,
             title: "ClubVault (Finance Club Ledger & Analytics)",
-            tagline: "Privacy-First Financial Ledger, Treasury Analytics & Local Vault Security",
+            tagline: "Financial Ledger & Treasury Dashboard for Student Organizations",
             category: "Frontend & Treasury Analytics",
             accent: "amber",
             attribution: "Sole Developer Project • Financial Application",
@@ -406,21 +406,6 @@ export const config = {
                 "Built automated SAP-compliant CSV export pipeline with full immutable audit history."
             ],
             technologies: ["Next.js 14", "TypeScript", "SQL Server", "Clean Architecture", "Tailwind CSS", "Vitest"]
-        },
-        {
-            position: "Software & Machine Learning Developer",
-            company: "IBM SkillsBuild",
-            classification: "Professional Development & Projects",
-            period: "2022 – 2023",
-            location: "Remote",
-            description: "Developed and released machine learning and NLP microservices within cloud environments, optimizing inference latency.",
-            responsibilities: [
-                "Developed and released machine learning and NLP microservices within cloud production environments.",
-                "Architected scalable APIs and backend services for analytics workflows and real-time computation systems.",
-                "Collaborated with cross-functional engineering teams to optimize model-serving pipelines and improve inference latency.",
-                "Conducted benchmarking on model accuracy and throughput across iterative framework upgrades."
-            ],
-            technologies: ["Python", "Machine Learning", "FastAPI", "Docker", "Cloud APIs"]
         }
     ],
     contactInfo: [

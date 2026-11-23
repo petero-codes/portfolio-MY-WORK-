@@ -17,32 +17,31 @@ const geistSans = localFont({
 export const metadata = {
   metadataBase: new URL('https://iam-petero.vercel.app'),
   title: {
-    default: "Peter Njuguna | Full-Stack Developer & AI Systems Engineer",
+    default: "Peter Njuguna | Python Backend Developer | Full-Stack Engineer | AI Evaluation Specialist",
     template: "%s | Peter Njuguna"
   },
   icons: {
     icon: "/logo.png"
   },
-  description: "Portfolio of Peter Njuguna — Full-Stack Developer, Python Backend Engineer, and AI Systems Specialist. Expertise in Next.js, FastAPI, Clean Architecture, and AI evaluation infrastructure.",
+  description: "Portfolio of Peter Njuguna — Python Backend Developer, Full-Stack Engineer, and AI Evaluation Specialist. Focused on Clean Architecture, REST APIs, SQL databases, and automated testing.",
   keywords: [
     "Peter Njuguna",
-    "Full-Stack Developer",
-    "Python Developer",
+    "Python Backend Developer",
+    "Full-Stack Engineer",
+    "AI Evaluation Specialist",
     "FastAPI",
     "Next.js",
-    "AI Engineering",
-    "AI Evaluation",
     "Clean Architecture",
     "SQL Server",
     "PostgreSQL",
     "React",
-    "Remote Software Engineer"
+    "Docker"
   ],
   authors: [{ name: "Peter Njuguna", url: "https://iam-petero.vercel.app" }],
   creator: "Peter Njuguna",
   openGraph: {
-    title: "Peter Njuguna | Full-Stack Developer & AI Systems Engineer",
-    description: "Production web applications, Python backends, and verified AI evaluation case studies.",
+    title: "Peter Njuguna | Python Backend Developer | Full-Stack Engineer | AI Evaluation Specialist",
+    description: "Production web applications, Python backends, and Clean Architecture case studies.",
     url: "https://iam-petero.vercel.app",
     siteName: "Peter Njuguna Portfolio",
     locale: "en_US",
@@ -50,8 +49,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Peter Njuguna | Full-Stack Developer & AI Systems Engineer",
-    description: "Production web applications, Python backends, and verified AI evaluation case studies."
+    title: "Peter Njuguna | Python Backend Developer | Full-Stack Engineer | AI Evaluation Specialist",
+    description: "Production web applications, Python backends, and Clean Architecture case studies."
   },
   robots: {
     index: true,
