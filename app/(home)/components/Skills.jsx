@@ -26,20 +26,20 @@ const itemAnimation = {
     }
 };
 
-const CategorySection = ({ category }) => (
+const TierSection = ({ tier }) => (
     <div className="space-y-4">
-        <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-black border border-white/30 flex items-center justify-center shadow-lg">
-                {category.icon}
-            </div>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1 pb-2 border-b border-white/10">
             <div>
-                <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">{category.title}</h3>
-                <p className="text-xs sm:text-sm text-white/60">{category.description}</p>
+                <h3 className="text-xl sm:text-2xl font-bold text-white tracking-tight">{tier.tier}</h3>
+                <p className="text-xs sm:text-sm text-white/60">{tier.description}</p>
             </div>
+            <span className="text-xs font-semibold px-3 py-1 rounded-full bg-white/10 text-white/80 border border-white/15 self-start sm:self-center">
+                {tier.badge}
+            </span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3">
-            {category.skills.map((skill, idx) => (
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+            {tier.skills.map((skill, idx) => (
                 <motion.div
                     key={idx}
                     variants={itemAnimation}
@@ -71,17 +71,17 @@ const CategorySection = ({ category }) => (
 );
 
 const SkillsSection = () => {
-    const categories = config.skillsCategories || [];
+    const proficiencyTiers = config.skillsProficiency || [];
 
     return (
         <section className="py-24" id="skills">
-            <div className="container mx-auto px-4 sm:px-6">
+            <div className="container mx-auto px-4 sm:px-6 max-w-6xl">
                 <motion.div
                     variants={containerAnimation}
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true }}
-                    className="space-y-16 max-w-6xl mx-auto"
+                    className="space-y-16"
                 >
                     <div className="max-w-2xl mx-auto text-center space-y-4">
                         <motion.div
@@ -104,13 +104,13 @@ const SkillsSection = () => {
                             variants={itemAnimation}
                             className="text-base sm:text-lg text-white/70"
                         >
-                            A comprehensive overview of my technical expertise across backend architecture, frontend engineering, databases, and AI evaluation.
+                            Organized by verified practical experience across production backends, client applications, and AI evaluation
                         </motion.p>
                     </div>
 
                     <div className="space-y-12">
-                        {categories.map((category, index) => (
-                            <CategorySection key={index} category={category} />
+                        {proficiencyTiers.map((tier, index) => (
+                            <TierSection key={index} tier={tier} />
                         ))}
                     </div>
                 </motion.div>

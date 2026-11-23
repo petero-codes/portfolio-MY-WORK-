@@ -2,7 +2,7 @@
 "use client"
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { HiCode, HiArrowRight, HiMail } from 'react-icons/hi';
+import { HiCode, HiArrowRight, HiDownload, HiMail } from 'react-icons/hi';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { config } from '@/config';
 import Link from 'next/link';
@@ -15,14 +15,14 @@ const containerAnimation = {
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0.2
+      staggerChildren: 0.12,
+      delayChildren: 0.15
     }
   }
 };
 
 const itemAnimation = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 18 },
   show: {
     opacity: 1,
     y: 0,
@@ -47,7 +47,7 @@ const textAnimation = {
 
 const HeroSection = () => {
   return (
-    <section className="min-h-[calc(100vh-140px)] flex flex-col items-center justify-center relative pt-8 pb-16">
+    <section className="min-h-[calc(100vh-140px)] flex flex-col items-center justify-center relative pt-8 pb-16" id="home">
       <BackgroundPresets.Minimal />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -57,14 +57,26 @@ const HeroSection = () => {
           animate="show"
           className="max-w-3xl mx-auto text-center space-y-6 relative"
         >
-          <motion.div
-            variants={itemAnimation}
-            className="inline-flex items-center space-x-2 mirror-effect mirror-glow px-4 py-2 rounded-full text-white"
-          >
-            <HiCode className="w-5 h-5 text-white/90" />
-            <span className="text-sm font-medium text-white/90">Welcome to my portfolio</span>
-          </motion.div>
+          {/* Welcome Pill & Availability */}
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <motion.div
+              variants={itemAnimation}
+              className="inline-flex items-center space-x-2 mirror-effect mirror-glow px-4 py-1.5 rounded-full text-white"
+            >
+              <HiCode className="w-4 h-4 text-white/90" />
+              <span className="text-xs sm:text-sm font-medium text-white/90">Welcome to my portfolio</span>
+            </motion.div>
 
+            <motion.div
+              variants={itemAnimation}
+              className="inline-flex items-center space-x-2 mirror-effect mirror-glow px-3.5 py-1.5 rounded-full text-xs text-white"
+            >
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[11px] sm:text-xs font-medium text-white/80">Available for Remote Roles</span>
+            </motion.div>
+          </div>
+
+          {/* Heading */}
           <div className="space-y-3">
             <motion.h1
               variants={itemAnimation}
@@ -85,6 +97,7 @@ const HeroSection = () => {
             </motion.h1>
           </div>
 
+          {/* Short Bio */}
           <motion.p
             variants={itemAnimation}
             className="text-sm sm:text-base md:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto"
@@ -92,6 +105,7 @@ const HeroSection = () => {
             {config.developer.shortBio}
           </motion.p>
 
+          {/* Action CTAs */}
           <motion.div
             variants={itemAnimation}
             className="flex flex-wrap gap-3 sm:gap-4 justify-center pt-2"
@@ -107,18 +121,33 @@ const HeroSection = () => {
               </Button>
             </Link>
 
-            <Link href="/contact">
+            <a
+              href="/Peter_Njuguna_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              download="Peter_Njuguna_Resume.pdf"
+            >
               <Button
                 variant="outline"
                 className="rounded-full px-6 py-6 text-sm sm:text-base font-semibold mirror-effect mirror-glow text-white hover:text-white hover:bg-white/10 transition-all"
               >
+                <HiDownload className="mr-2 w-4 h-4" />
+                <span>Download CV</span>
+              </Button>
+            </a>
+
+            <Link href="/contact">
+              <Button
+                variant="ghost"
+                className="rounded-full px-5 py-6 text-sm sm:text-base font-medium text-white/80 hover:text-white hover:bg-white/5 transition-all"
+              >
                 <HiMail className="mr-2 w-4 h-4" />
-                <span>Get In Touch</span>
+                <span>Contact</span>
               </Button>
             </Link>
           </motion.div>
 
-          {/* Social links */}
+          {/* Social Links */}
           <motion.div
             variants={itemAnimation}
             className="flex items-center justify-center gap-6 pt-2 text-sm text-white/60"

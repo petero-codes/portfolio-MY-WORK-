@@ -109,9 +109,19 @@ const ExperienceSection = () => {
                                                             <h3 className="text-lg sm:text-xl font-bold text-white mb-1">
                                                                 {exp.position}
                                                             </h3>
-                                                            <p className="text-white/80 font-medium text-sm sm:text-base">
-                                                                {exp.company}
-                                                            </p>
+                                                            <div className="flex flex-wrap items-center gap-2">
+                                                                <span className="text-white/80 font-medium text-sm sm:text-base">
+                                                                    {exp.company}
+                                                                </span>
+                                                                {exp.classification && (
+                                                                    <>
+                                                                        <span className="text-white/30">•</span>
+                                                                        <span className="text-xs px-2.5 py-0.5 rounded-full bg-white/10 text-white/90 border border-white/15 font-mono">
+                                                                            {exp.classification}
+                                                                        </span>
+                                                                    </>
+                                                                )}
+                                                            </div>
                                                         </div>
                                                         <div className="flex items-center gap-2 text-xs sm:text-sm text-white/70">
                                                             <HiCalendar className="w-4 h-4 flex-shrink-0" />
