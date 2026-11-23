@@ -74,7 +74,7 @@ const ExperienceSection = () => {
                             <motion.div
                                 key={index}
                                 variants={itemAnimation}
-                                className="rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all p-6 sm:p-7"
+                                className="rounded-3xl glass-panel glass-panel-hover transition-all duration-300 p-6 sm:p-8"
                             >
                                 <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4 border-b border-white/10 pb-4">
                                     <div>
