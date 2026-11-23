@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HiServer, HiLightningBolt, HiDatabase, HiShieldCheck, HiOutlineSparkles } from 'react-icons/hi';
+import { HiServer, HiLightningBolt, HiDatabase, HiShieldCheck, HiCode } from 'react-icons/hi';
 import { config } from '@/config';
 
 const containerAnimation = {
@@ -51,7 +51,7 @@ const EngineeringSnapshot = () => {
                             variants={itemAnimation}
                             className="inline-flex items-center space-x-2 mirror-effect mirror-glow px-4 py-2 rounded-full text-white"
                         >
-                            <HiOutlineSparkles className="w-5 h-5 text-white/90" />
+                            <HiCode className="w-5 h-5 text-white/90" />
                             <span className="text-sm font-medium text-white/90">Technical Scope</span>
                         </motion.div>
 

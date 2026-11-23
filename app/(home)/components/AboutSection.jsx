@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HiUser, HiCheckCircle } from 'react-icons/hi';
+import { HiUser } from 'react-icons/hi';
 import { config } from '@/config';
 
 const containerAnimation = {
@@ -73,7 +73,7 @@ const AboutSection = () => {
                                 {about.pillars.map((pillar, idx) => (
                                     <div key={idx} className="space-y-1.5 p-3.5 rounded-xl bg-black/40 border border-white/10">
                                         <div className="flex items-center gap-2 text-sm font-bold text-white">
-                                            <HiCheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                                            <span className="w-1.5 h-1.5 rounded-full bg-white/50 flex-shrink-0" />
                                             <span>{pillar.title}</span>
                                         </div>
                                         <p className="text-xs text-white/60 leading-relaxed">

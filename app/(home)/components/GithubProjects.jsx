@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaGithub, FaStar, FaCodeBranch, FaSpinner } from 'react-icons/fa';
+import { FaGithub, FaCodeBranch, FaSpinner } from 'react-icons/fa';
 import { HiExternalLink } from 'react-icons/hi';
 import { Button } from '@/components/ui/button';
 import { Skeleton } from '@/components/ui/skeleton';
@@ -162,11 +162,7 @@ const ProjectCard = ({ project, size }) => {
                                 </div>
                             )}
 
-                            <div className="flex items-center space-x-3 ml-auto">
-                                <span className="flex items-center space-x-1">
-                                    <FaStar className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-amber-400" />
-                                    <span>{project.stargazers_count ?? project.stars ?? 0}</span>
-                                </span>
+                            <div className="flex items-center space-x-3 ml-auto text-xs text-white/50">
                                 <span className="flex items-center space-x-1">
                                     <FaCodeBranch className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                                     <span>{project.forks_count ?? project.forks ?? 0}</span>
