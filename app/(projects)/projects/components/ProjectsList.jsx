@@ -9,7 +9,7 @@ export const ProjectsList = ({ projects }) => (
         variants={containerAnimation}
         initial="hidden"
         animate="show"
-        className="space-y-4"
+        className="space-y-6 sm:space-y-8"
     >
         {projects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />

@@ -104,16 +104,15 @@ const Navigation = ({ isMobile = false, onLinkClick }) => (
 
 const ContactButton = ({ isMobile = false, onLinkClick }) => (
     <motion.div
-        className={`flex items-center ${isMobile ? 'w-full justify-center mt-4' : 'space-x-6'}`}
+        className={`flex items-center ${isMobile ? 'w-full flex-col gap-2 mt-4' : 'space-x-3'}`}
         initial={{ opacity: 0, x: isMobile ? 0 : 20 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: isMobile ? 0.5 : 0.4, duration: 0.5 }}
         onClick={onLinkClick}
     >
-        <Link href={`https://github.com/${config.social.github}`} target='_blank' className={isMobile ? 'w-full' : ''}>
-            <Button className={`${isMobile ? 'w-full' : ''} rounded-2xl font-semibold bg-white text-gray-900 hover:bg-gray-200 text-sm sm:text-base px-4 sm:px-6 py-2 sm:py-3`}>
-                <span className="hidden sm:inline">Repo Inside!</span>
-                <span className="sm:hidden">Template</span>
+        <Link href="/contact" className={isMobile ? 'w-full' : ''}>
+            <Button className={`${isMobile ? 'w-full' : ''} rounded-full font-medium bg-white text-gray-900 hover:bg-gray-100 text-xs sm:text-sm px-4 sm:px-5 py-2 transition-all`}>
+                Get in Touch
             </Button>
         </Link>
     </motion.div>

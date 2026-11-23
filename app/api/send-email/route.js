@@ -1,5 +1,8 @@
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
+import { config } from '@/config';
+
+const OWNER_EMAIL = process.env.OWNER_EMAIL || config.social.email || 'waynelulu6@gmail.com';
 
 // API route for sending contact form emails
 export async function POST(request) {
@@ -38,7 +41,7 @@ export async function POST(request) {
     }
 
     // Ensure sender email is not the owner's email (safety check)
-    if (from_email.toLowerCase() === 'chapokumih@gmail.com') {
+    if (from_email.toLowerCase() === OWNER_EMAIL.toLowerCase()) {
       console.warn('Warning: Sender email matches owner email, but proceeding...');
     }
 
@@ -66,9 +69,9 @@ export async function POST(request) {
     console.log('Sender email (raw):', from_email);
     console.log('Sender email (sanitized):', sanitizedEmail);
     console.log('Sender email (for auto-reply):', senderEmail);
-    console.log('Owner email:', 'chapokumih@gmail.com');
+    console.log('Owner email:', OWNER_EMAIL);
     console.log('Auto-reply will be sent to:', senderEmail);
-    console.log('Are sender and owner different?', senderEmail !== 'chapokumih@gmail.com');
+    console.log('Are sender and owner different?', senderEmail !== OWNER_EMAIL.toLowerCase());
     console.log('===========================');
     
     // Send both emails simultaneously
@@ -76,7 +79,7 @@ export async function POST(request) {
       // Email to portfolio owner
       resend.emails.send({
       from: 'Portfolio Contact <onboarding@resend.dev>',
-      to: ['chapokumih@gmail.com'],
+      to: [OWNER_EMAIL],
       replyTo: from_email,
       subject: `New Message from ${sanitizedName}`,
       html: `
@@ -155,7 +158,7 @@ export async function POST(request) {
     }
 
     console.log('✅ Owner email sent successfully! Email ID:', ownerEmail.data?.id);
-    console.log('Owner email sent to: chapokumih@gmail.com');
+    console.log('Owner email sent to:', OWNER_EMAIL);
 
     if (autoReply.error) {
       console.error('❌ Resend error (auto-reply):', JSON.stringify(autoReply.error, null, 2));

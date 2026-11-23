@@ -1,20 +1,8 @@
 "use client"
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HiChip, HiSparkles, HiCode, HiDatabase, HiCube } from 'react-icons/hi';
-import { Badge } from "@/components/ui/badge";
-import { cn } from '@/lib/utils';
+import { HiCode } from 'react-icons/hi';
 import { config } from '@/config';
-
-const getLevelPercentage = (level) => {
-    switch (level) {
-        case 'Expert': return 95;
-        case 'Advanced': return 85;
-        case 'Intermediate': return 70;
-        case 'Beginner': return 50;
-        default: return 75;
-    }
-};
 
 const containerAnimation = {
     hidden: { opacity: 0 },
@@ -27,128 +15,101 @@ const containerAnimation = {
 };
 
 const itemAnimation = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 },
     show: {
         opacity: 1,
         y: 0,
         transition: {
             duration: 0.4,
-            ease: [0.23, 1, 0.32, 1]
+            ease: [0.25, 0.1, 0.25, 1.0]
         }
     }
 };
 
-const SkillCard = ({ skill, bgClass }) => {
-    const levelPercentage = getLevelPercentage(skill.level);
-    const gradientClass = {
-        'bg-blue-500/10': 'from-blue-500/80 to-blue-500',
-        'bg-emerald-500/10': 'from-emerald-500/80 to-emerald-500',
-        'bg-orange-500/10': 'from-orange-500/80 to-orange-500'
-    }[bgClass] || 'from-primary/80 to-primary';
-
-    return (
-        <motion.div
-            variants={itemAnimation}
-            className="relative flex flex-col h-full"
-        >
-            <div className="relative h-full p-4 rounded-xl border border-zinc-800/50
-                          hover:border-zinc-700/50 transition-all duration-300">
-                <div className="flex items-center justify-between mb-3">
-                    <h3 className="text-base font-medium text-primary/90">
-                        {skill.name}
-                    </h3>
-                    {skill.hot && (
-                        <Badge variant="secondary" className="bg-amber-500/10 text-amber-500 border-none px-2 py-0 text-xs">
-                            <HiSparkles className="w-3 h-3 mr-1" />
-                            Hot
-                        </Badge>
-                    )}
-                </div>
-
-                <div className="h-1.5 bg-zinc-800/50 rounded-full overflow-hidden">
-                    <motion.div
-                        initial={{ width: 0 }}
-                        whileInView={{ width: `${levelPercentage}%` }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1, delay: 0.2 }}
-                        className={cn("h-full bg-gradient-to-r rounded-full", gradientClass)}
-                    />
-                </div>
-
-                <div className="mt-2 flex justify-between items-center text-xs">
-                    <span className="text-muted-foreground">Proficiency</span>
-                    <span className="font-medium text-primary">{skill.level}</span>
-                </div>
-            </div>
-        </motion.div>
-    );
-};
-
-const CategorySection = ({ category }) => (
-    <div className="space-y-6">
-        <div className="flex items-center gap-3">
-            <div className={cn("p-2.5 rounded-xl", category.bgClass)}>
-                <div className={cn("w-5 h-5", category.iconClass)}>
-                    {category.icon}
-                </div>
-            </div>
-            <div>
-                <h3 className="text-xl font-semibold text-primary">{category.title}</h3>
-                <p className="text-sm text-muted-foreground">{category.description}</p>
-            </div>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {category.skills.map((skill, idx) => (
-                <SkillCard key={idx} skill={skill} bgClass={category.bgClass} />
-            ))}
-        </div>
-    </div>
-);
-
 const SkillsSection = () => {
-    const skills = config.skills;
+    const categories = config.skillsCategories || [];
 
     return (
-        <section className="py-24" id="skills">
-            <div className="container mx-auto px-6">
+        <section className="py-20 border-t border-white/10" id="skills">
+            <div className="container mx-auto px-4 sm:px-6">
                 <motion.div
                     variants={containerAnimation}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true }}
-                    className="space-y-16"
+                    viewport={{ once: true, margin: "-50px" }}
+                    className="max-w-6xl mx-auto space-y-12"
                 >
-                    <div className="max-w-2xl mx-auto text-center space-y-6">
+                    {/* Header */}
+                    <div className="max-w-2xl mx-auto text-center space-y-4">
                         <motion.div
                             variants={itemAnimation}
-                            className="inline-flex items-center space-x-2 mirror-effect mirror-glow px-4 py-2 rounded-full text-primary"
+                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm text-gray-300"
                         >
-                            <HiChip className="w-5 h-5 text-primary" />
-                            <span className="text-sm font-medium text-primary">
-                                Skills & Technologies
-                            </span>
+                            <HiCode className="w-4 h-4 text-emerald-400" />
+                            <span>Technical Competencies</span>
                         </motion.div>
 
-                        <motion.div variants={itemAnimation} className="space-y-2">
-                            <h2 className="text-3xl md:text-4xl font-bold text-primary">
-                                Technical Proficiency
-                            </h2>
-                            <p className="text-lg text-muted-foreground">
-                                A comprehensive overview of my technical expertise across various
-                                development domains and tools.
-                            </p>
-                        </motion.div>
+                        <motion.h2
+                            variants={itemAnimation}
+                            className="text-3xl sm:text-4xl font-bold tracking-tight text-white"
+                        >
+                            Engineering Skills & Stack
+                        </motion.h2>
+
+                        <motion.p
+                            variants={itemAnimation}
+                            className="text-sm sm:text-base text-gray-400"
+                        >
+                            Production-tested technologies organized by engineering domain. No arbitrary percentage bars—only real technical proficiency applied across software projects and evaluation systems.
+                        </motion.p>
                     </div>
 
-                    <motion.div
-                        variants={containerAnimation}
-                        className="space-y-16"
-                    >
-                        {skills.map((category, index) => (
-                            <CategorySection key={index} category={category} />
+                    {/* Categorized Grid */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {categories.map((category, idx) => (
+                            <motion.div
+                                key={category.title}
+                                variants={itemAnimation}
+                                className={`rounded-2xl p-6 bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all flex flex-col justify-between ${
+                                    idx === 0 || idx === 4 ? 'md:col-span-1 lg:col-span-1' : ''
+                                }`}
+                            >
+                                <div>
+                                    <div className="flex items-center gap-3 mb-3">
+                                        <div className="p-2.5 rounded-xl bg-white/5 border border-white/10">
+                                            {category.icon}
+                                        </div>
+                                        <div>
+                                            <h3 className="text-base font-semibold text-white">
+                                                {category.title}
+                                            </h3>
+                                        </div>
+                                    </div>
+
+                                    <p className="text-xs text-gray-400 mb-5 leading-relaxed">
+                                        {category.description}
+                                    </p>
+
+                                    <div className="flex flex-wrap gap-2">
+                                        {category.skills.map((skill) => (
+                                            <div
+                                                key={skill.name}
+                                                className="group inline-flex flex-col px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:border-white/30 hover:bg-white/10 transition-all"
+                                                title={skill.context}
+                                            >
+                                                <span className="text-xs font-medium text-gray-200">
+                                                    {skill.name}
+                                                </span>
+                                                <span className="text-[10px] text-gray-400 font-mono">
+                                                    {skill.context}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </motion.div>
                         ))}
-                    </motion.div>
+                    </div>
                 </motion.div>
             </div>
         </section>

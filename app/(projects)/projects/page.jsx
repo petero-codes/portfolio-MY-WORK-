@@ -7,8 +7,8 @@ import { ProjectsList } from './components/ProjectsList';
 
 const ProjectsPage = () => {
     return (
-        <section className="py-16" id="projects">
-            <div className="container mx-auto px-6 md:px-64">
+        <section className="py-12 sm:py-16 md:py-20" id="projects">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
                 <BackgroundEffects
                     variant="diagonal"
                     colors={{ first: "secondary", second: "secondary" }}

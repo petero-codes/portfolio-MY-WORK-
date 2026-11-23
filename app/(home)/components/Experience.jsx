@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HiBriefcase, HiCalendar } from 'react-icons/hi';
+import { HiBriefcase, HiCalendar, HiLocationMarker } from 'react-icons/hi';
 import { config } from '@/config';
 
 const containerAnimation = {
@@ -15,13 +15,13 @@ const containerAnimation = {
 };
 
 const itemAnimation = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 },
     show: {
         opacity: 1,
         y: 0,
         transition: {
             duration: 0.5,
-            ease: [0.23, 1, 0.32, 1]
+            ease: [0.25, 0.1, 0.25, 1.0]
         }
     }
 };
@@ -34,129 +34,106 @@ const ExperienceSection = () => {
     }
 
     return (
-        <section className="py-24" id="experience">
-            <div className="container mx-auto px-6">
+        <section className="py-20 border-t border-white/10" id="experience">
+            <div className="container mx-auto px-4 sm:px-6">
                 <motion.div
                     variants={containerAnimation}
                     initial="hidden"
                     whileInView="show"
-                    viewport={{ once: true }}
-                    className="space-y-16"
+                    viewport={{ once: true, margin: "-50px" }}
+                    className="space-y-12 max-w-5xl mx-auto"
                 >
-                    <div className="max-w-2xl mx-auto text-center space-y-6">
+                    {/* Section Header */}
+                    <div className="max-w-2xl mx-auto text-center space-y-4">
                         <motion.div
                             variants={itemAnimation}
-                            className="inline-flex items-center space-x-2 mirror-effect mirror-glow px-4 py-2 rounded-full text-primary"
+                            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs sm:text-sm text-gray-300"
                         >
-                            <HiBriefcase className="w-5 h-5 text-primary" />
-                            <span className="text-sm font-medium text-primary">
-                                Professional Experience
-                            </span>
+                            <HiBriefcase className="w-4 h-4 text-emerald-400" />
+                            <span>Professional Background</span>
                         </motion.div>
 
-                        <motion.div variants={itemAnimation} className="space-y-2">
-                            <h2 className="text-3xl md:text-4xl font-bold text-primary">
-                                Work Experience
-                            </h2>
-                            <p className="text-lg text-muted-foreground">
-                                A journey through my professional career and key achievements
-                            </p>
-                        </motion.div>
+                        <motion.h2
+                            variants={itemAnimation}
+                            className="text-3xl sm:text-4xl font-bold tracking-tight text-white"
+                        >
+                            Work Experience
+                        </motion.h2>
+
+                        <motion.p
+                            variants={itemAnimation}
+                            className="text-sm sm:text-base text-gray-400"
+                        >
+                            Verified engineering roles focused on backend scalability, full-stack application development, and frontier AI model evaluation.
+                        </motion.p>
                     </div>
 
-                    <div className="max-w-4xl mx-auto">
-                        <motion.div
-                            variants={containerAnimation}
-                            className="space-y-8"
-                        >
-                            {experiences.map((exp, index) => (
-                                <motion.div
-                                    key={index}
-                                    variants={itemAnimation}
-                                    className="relative"
-                                >
-                                    <div className="flex gap-6">
-                                        {/* Timeline line */}
-                                        <div className="flex flex-col items-center">
-                                            <div className="w-12 h-12 rounded-xl bg-black border border-white/30 flex items-center justify-center shadow-lg transition-all duration-300 group-hover:border-white/60 group-hover:shadow-[0_0_15px_rgba(255,255,255,0.15)]">
-                                                <HiBriefcase className="w-6 h-6 text-white" />
-                                            </div>
-                                            {index !== experiences.length - 1 && (
-                                                <div className="w-0.5 h-full bg-gradient-to-b from-white/20 to-transparent mt-4" />
+                    {/* Timeline List */}
+                    <div className="space-y-6">
+                        {experiences.map((exp, index) => (
+                            <motion.div
+                                key={index}
+                                variants={itemAnimation}
+                                className="rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-all p-6 sm:p-7"
+                            >
+                                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3 mb-4 border-b border-white/10 pb-4">
+                                    <div>
+                                        <h3 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                                            {exp.position}
+                                        </h3>
+                                        <div className="flex flex-wrap items-center gap-2 mt-1">
+                                            <span className="text-sm font-semibold text-emerald-400">
+                                                {exp.company}
+                                            </span>
+                                            {exp.location && (
+                                                <>
+                                                    <span className="text-gray-600">&bull;</span>
+                                                    <span className="inline-flex items-center gap-1 text-xs text-gray-400">
+                                                        <HiLocationMarker className="w-3.5 h-3.5" />
+                                                        {exp.location}
+                                                    </span>
+                                                </>
                                             )}
                                         </div>
-
-                                        {/* Content */}
-                                        <div className="flex-1 pb-8">
-                                            <div className="mirror-effect mirror-effect-hover mirror-shine mirror-border rounded-2xl p-6 group relative overflow-hidden">
-                                                {/* Shiny overlay effect */}
-                                                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none">
-                                                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent shiny-sweep" />
-                                                </div>
-                                                
-                                                {/* Glossy shine effect */}
-                                                <div className="absolute inset-0 opacity-0 group-hover:opacity-30 transition-opacity duration-300">
-                                                    <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/40 to-transparent rounded-t-2xl" />
-                                                </div>
-                                                
-                                                <div className="relative z-10">
-                                                <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-4">
-                                                    <div>
-                                                        <h3 className="text-xl font-bold text-white mb-1">
-                                                            {exp.position}
-                                                        </h3>
-                                                        <p className="text-primary/80 font-medium">
-                                                            {exp.company}
-                                                        </p>
-                                                    </div>
-                                                    <div className="flex items-center gap-2 text-sm text-white/70">
-                                                        <HiCalendar className="w-4 h-4" />
-                                                        <span>{exp.period}</span>
-                                                    </div>
-                                                </div>
-
-                                                {exp.location && (
-                                                    <p className="text-sm text-white/60 mb-4">
-                                                         {exp.location}
-                                                    </p>
-                                                )}
-
-                                                {exp.description && (
-                                                    <p className="text-sm text-white/70 leading-relaxed mb-4">
-                                                        {exp.description}
-                                                    </p>
-                                                )}
-
-                                                {exp.responsibilities && exp.responsibilities.length > 0 && (
-                                                    <ul className="space-y-2">
-                                                        {exp.responsibilities.map((responsibility, idx) => (
-                                                            <li key={idx} className="flex items-start gap-2 text-sm text-white/70">
-                                                                <span className="text-white/40 mt-1.5">▸</span>
-                                                                <span>{responsibility}</span>
-                                                            </li>
-                                                        ))}
-                                                    </ul>
-                                                )}
-
-                                                {exp.technologies && exp.technologies.length > 0 && (
-                                                    <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-white/10">
-                                                        {exp.technologies.map((tech, idx) => (
-                                                            <span
-                                                                key={idx}
-                                                                className="text-xs bg-white/10 text-white px-3 py-1 rounded-full border border-white/20"
-                                                            >
-                                                                {tech}
-                                                            </span>
-                                                        ))}
-                                                    </div>
-                                                )}
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
-                                </motion.div>
-                            ))}
-                        </motion.div>
+
+                                    <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-gray-300 self-start">
+                                        <HiCalendar className="w-3.5 h-3.5 text-gray-400" />
+                                        <span>{exp.period}</span>
+                                    </div>
+                                </div>
+
+                                {exp.description && (
+                                    <p className="text-sm text-gray-300 leading-relaxed mb-4">
+                                        {exp.description}
+                                    </p>
+                                )}
+
+                                {exp.responsibilities && exp.responsibilities.length > 0 && (
+                                    <ul className="space-y-2 mb-4">
+                                        {exp.responsibilities.map((responsibility, idx) => (
+                                            <li key={idx} className="flex items-start gap-2.5 text-xs sm:text-sm text-gray-300 leading-relaxed">
+                                                <span className="text-emerald-400 font-bold mt-1">&rsaquo;</span>
+                                                <span>{responsibility}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                )}
+
+                                {exp.technologies && exp.technologies.length > 0 && (
+                                    <div className="flex flex-wrap gap-1.5 pt-3 border-t border-white/5">
+                                        {exp.technologies.map((tech, idx) => (
+                                            <span
+                                                key={idx}
+                                                className="text-xs px-2.5 py-0.5 rounded-md bg-white/5 border border-white/10 text-gray-300 font-mono"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                )}
+                            </motion.div>
+                        ))}
                     </div>
                 </motion.div>
             </div>
@@ -165,4 +142,3 @@ const ExperienceSection = () => {
 };
 
 export default ExperienceSection;
-

@@ -1,6 +1,8 @@
+"use client"
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { HiArrowRight, HiCode } from 'react-icons/hi';
+import { FaGithub } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { config } from '@/config';
 import { titleAnimation } from './Animations';
@@ -10,60 +12,43 @@ const SectionTitle = () => (
         initial="hidden"
         animate="show"
         variants={titleAnimation}
-        className="mb-16 space-y-6"
+        className="mb-12 space-y-6"
     >
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/10">
+            <div className="space-y-3 max-w-3xl">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-gray-300">
+                    <HiCode className="w-4 h-4 text-emerald-400" />
+                    <span>Technical Case Studies</span>
+                </div>
 
-        <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-            <div className="space-y-4 max-w-2xl">
-                <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary tracking-tight">
-                    Featured Work & Projects
-                </h2>
-                <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
-                    A curated selection of my professional work and personal projects,
-                    showcasing expertise in{' '}
-                    <span className="text-primary">full-stack development</span>,{' '}
-                    <span className="text-primary">UI/UX design</span>, and{' '}
-                    <span className="text-primary">cloud architecture</span>.
+                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
+                    Engineering Projects & Case Studies
+                </h1>
+
+                <p className="text-sm sm:text-base text-gray-400 leading-relaxed">
+                    Verified production applications and open-source systems. Each case study details actual software architectures, workflow rules, database integrations, and key engineering trade-offs.
                 </p>
             </div>
 
-            <div className="flex items-center">
+            <div className="flex items-center flex-shrink-0">
                 <Button
-                    variant="expandIcon"
-                    Icon={HiArrowRight}
-                    iconPlacement="right"
-                    className="w-full md:w-auto rounded-2xl px-4 sm:px-5 py-5 sm:py-6 text-sm sm:text-base transition-all duration-300 shadow-lg shadow-primary/5 hover:shadow-primary/10"
+                    variant="outline"
+                    className="rounded-full px-5 py-5 text-sm font-medium border-white/20 hover:border-white/40 text-white bg-white/5 hover:bg-white/10 transition-all"
                     asChild
                 >
                     <a
-                        href={`https://github.com/${config.social.github}`}
+                        href={config.social.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-medium"
+                        className="inline-flex items-center gap-2"
                     >
-                        View Github
+                        <FaGithub className="w-4 h-4" />
+                        <span>GitHub Profile</span>
+                        <HiArrowRight className="w-4 h-4" />
                     </a>
                 </Button>
             </div>
         </div>
-
-        <div className="flex items-center gap-6 pt-2 overflow-x-auto pb-2 scrollbar-hide">
-            <div className="space-y-1 flex-shrink-0">
-                <span className="text-xl sm:text-2xl font-bold text-primary">50+</span>
-                <p className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                    Projects Completed
-                </p>
-            </div>
-            <div className="w-px h-8 sm:h-10 bg-primary/10 flex-shrink-0" />
-            <div className="space-y-1 flex-shrink-0">
-                <span className="text-xl sm:text-2xl font-bold text-primary">2</span>
-                <p className="text-xs sm:text-sm text-muted-foreground whitespace-nowrap">
-                    Years Experience
-                </p>
-            </div>
-        </div>
-
-        <div className="h-px w-full bg-gradient-to-r from-primary/5 via-primary/20 to-primary/5" />
     </motion.div>
 );
 

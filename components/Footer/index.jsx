@@ -15,9 +15,9 @@ const Footer = () => {
                 <div className="text-[10px] sm:text-xs md:text-sm text-muted-foreground flex flex-wrap items-center justify-center gap-1 sm:gap-1.5 md:gap-2 leading-tight">
                     <span className="whitespace-nowrap">© {new Date().getFullYear()} {config.developer.name}</span>
                     <span className="hidden sm:inline">•</span>
-                    <span className="whitespace-nowrap">All rights reserved</span>
+                    <span className="whitespace-nowrap">{config.developer.title}</span>
                     <span className="hidden sm:inline">•</span>
-                    <span className="whitespace-nowrap">Made with {config.developer.name}</span>
+                    <span className="whitespace-nowrap">Nairobi, Kenya</span>
                 </div>
             </div>
         </motion.footer>
