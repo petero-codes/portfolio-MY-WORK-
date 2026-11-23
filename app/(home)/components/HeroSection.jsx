@@ -2,7 +2,7 @@
 "use client"
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { HiCode, HiArrowRight, HiDownload, HiMail } from 'react-icons/hi';
+import { HiCode, HiArrowRight, HiMail } from 'react-icons/hi';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import { config } from '@/config';
 import Link from 'next/link';
@@ -107,28 +107,13 @@ const HeroSection = () => {
               </Button>
             </Link>
 
-            <a
-              href="/Peter_Njuguna_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              download="Peter_Njuguna_Resume.pdf"
-            >
+            <Link href="/contact">
               <Button
                 variant="outline"
                 className="rounded-full px-6 py-6 text-sm sm:text-base font-semibold mirror-effect mirror-glow text-white hover:text-white hover:bg-white/10 transition-all"
               >
-                <HiDownload className="mr-2 w-4 h-4" />
-                <span>Download CV</span>
-              </Button>
-            </a>
-
-            <Link href="/contact">
-              <Button
-                variant="ghost"
-                className="rounded-full px-5 py-6 text-sm sm:text-base font-medium text-white/80 hover:text-white hover:bg-white/5 transition-all"
-              >
                 <HiMail className="mr-2 w-4 h-4" />
-                <span>Contact</span>
+                <span>Get In Touch</span>
               </Button>
             </Link>
           </motion.div>

@@ -1,13 +1,12 @@
 import React from "react";
-import { FaGithub, FaMapPin, FaLinkedin, FaPhone, FaFileDownload } from "react-icons/fa";
+import { FaGithub, FaMapPin, FaLinkedin, FaPhone } from "react-icons/fa";
 import { HiCode, HiCube, HiDatabase, HiMail, HiServer, HiLightningBolt, HiShieldCheck } from "react-icons/hi";
 
 export const config = {
     developer: {
         name: "Peter Njuguna",
         title: "Full-Stack Developer | Python & Backend Engineering | AI Evaluation",
-        shortBio: "Software Engineer specializing in Python, Next.js, FastAPI, Clean Architecture, and AI evaluation infrastructure. Focused on building verifiable, production-grade applications.",
-        resumeUrl: "/Peter_Njuguna_Resume.pdf"
+        shortBio: "Software Engineer specializing in Python, Next.js, FastAPI, Clean Architecture, and AI evaluation infrastructure. Focused on building verifiable, production-grade applications."
     },
     social: {
         github: "petero-codes",
@@ -291,12 +290,6 @@ export const config = {
             label: "Phone",
             value: "+254 712 953 342",
             link: "tel:+254712953342"
-        },
-        {
-            icon: <FaFileDownload className="w-5 h-5 text-white" />,
-            label: "Curriculum Vitae",
-            value: "Download Peter Njuguna CV (PDF)",
-            link: "/Peter_Njuguna_Resume.pdf"
         },
         {
             icon: <FaMapPin className="w-5 h-5 text-white" />,
