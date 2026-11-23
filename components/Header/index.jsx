@@ -118,12 +118,12 @@ const Header = () => {
     return (
         <>
             <motion.header
-                className="py-4 sm:py-6 z-50 text-white sticky top-0 bg-black/40 backdrop-blur-md border-b border-white/10"
+                className="py-3 sm:py-4 z-50 text-white sticky top-0 bg-black/60 backdrop-blur-md border-b border-white/10 transition-all"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
             >
-                <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 md:px-12 max-w-6xl">
+                <div className="container mx-auto flex items-center justify-between px-4 sm:px-6 md:px-8 max-w-5xl">
                     <Logo />
 
                     <div className="hidden md:flex items-center space-x-6">
@@ -131,21 +131,6 @@ const Header = () => {
                     </div>
 
                     <div className="hidden sm:flex items-center gap-3">
-                        <a
-                            href="/Peter_Njuguna_Resume.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            download="Peter_Njuguna_Resume.pdf"
-                        >
-                            <Button
-                                variant="outline"
-                                size="sm"
-                                className="rounded-full text-xs font-semibold mirror-effect mirror-glow text-white hover:bg-white/10 border-white/20 px-4 py-2"
-                            >
-                                Resume (PDF)
-                            </Button>
-                        </a>
-
                         <Link href="/contact">
                             <Button
                                 size="sm"
@@ -211,24 +196,9 @@ const Header = () => {
                                     <Navigation isMobile={true} onLinkClick={closeMobileMenu} />
                                 </div>
 
-                                <div className="space-y-3 pt-6 border-t border-white/10">
-                                    <a
-                                        href="/Peter_Njuguna_Resume.pdf"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        download="Peter_Njuguna_Resume.pdf"
-                                        className="block w-full"
-                                    >
-                                        <Button
-                                            variant="outline"
-                                            className="w-full rounded-xl text-xs font-semibold mirror-effect text-white border-white/20"
-                                        >
-                                            Resume (PDF)
-                                        </Button>
-                                    </a>
-
+                                <div className="pt-6 border-t border-white/10">
                                     <Link href="/contact" className="block w-full" onClick={closeMobileMenu}>
-                                        <Button className="w-full rounded-xl text-xs font-semibold bg-white text-gray-950 hover:bg-gray-200">
+                                        <Button className="w-full rounded-xl text-xs font-semibold bg-white text-gray-950 hover:bg-gray-200 py-2.5">
                                             Contact
                                         </Button>
                                     </Link>

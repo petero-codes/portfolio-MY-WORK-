@@ -1,5 +1,5 @@
 import React from "react";
-import { FaGithub, FaMapPin, FaLinkedin, FaPhone, FaFileDownload } from "react-icons/fa";
+import { FaGithub, FaMapPin, FaLinkedin, FaPhone } from "react-icons/fa";
 import { HiCode, HiCube, HiDatabase, HiMail, HiServer, HiLightningBolt, HiShieldCheck } from "react-icons/hi";
 
 export const config = {
@@ -7,9 +7,7 @@ export const config = {
         name: "Peter Njuguna",
         title: "Python Backend Developer | Full-Stack Engineer | AI Evaluation Specialist",
         headline: "Engineering resilient Python backends, high-integrity web applications, and empirical AI evaluation pipelines.",
-        shortBio: "Software engineer specializing in Python backend architecture, REST API development, relational databases, and AI model evaluation. Focused on Clean Architecture, server-enforced business logic, and automated testing.",
-        availability: "Open to remote full-time, part-time, and contract engineering opportunities",
-        resumeUrl: "/Peter_Njuguna_Resume.pdf"
+        shortBio: "Software engineer specializing in Python backend architecture, REST API development, relational databases, and AI model evaluation. Focused on Clean Architecture, server-enforced business logic, and automated testing."
     },
     social: {
         github: "petero-codes",
@@ -20,11 +18,7 @@ export const config = {
         location: "Nairobi, Kenya"
     },
     NAV_ITEMS: [
-        { href: '/', label: 'Home' },
         { href: '/projects', label: 'Projects' },
-        { href: '/#experience', label: 'Experience' },
-        { href: '/#skills', label: 'Skills' },
-        { href: '/#about', label: 'About' },
         { href: '/contact', label: 'Contact' }
     ],
     engineeringSnapshot: [
@@ -380,12 +374,6 @@ export const config = {
             label: "Phone",
             value: "+254 712 953 342",
             link: "tel:+254712953342"
-        },
-        {
-            icon: <FaFileDownload className="w-5 h-5 text-white" />,
-            label: "Curriculum Vitae",
-            value: "Download Peter Njuguna CV (PDF)",
-            link: "/Peter_Njuguna_Resume.pdf"
         },
         {
             icon: <FaMapPin className="w-5 h-5 text-white" />,
