@@ -1,21 +1,12 @@
-import { config } from '@/config';
-
 export default function sitemap() {
   const baseUrl = 'https://iam-petero.vercel.app';
   
-  const projectEntries = (config.projects || []).map((p) => ({
-    url: `${baseUrl}/projects/${p.slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.85,
-  }));
-
   return [
     {
       url: baseUrl,
       lastModified: new Date(),
       changeFrequency: 'weekly',
-      priority: 1,
+      priority: 1.0,
     },
     {
       url: `${baseUrl}/projects`,
@@ -23,7 +14,6 @@ export default function sitemap() {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
-    ...projectEntries,
     {
       url: `${baseUrl}/contact`,
       lastModified: new Date(),

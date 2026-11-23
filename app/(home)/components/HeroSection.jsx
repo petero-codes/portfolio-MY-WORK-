@@ -2,115 +2,108 @@
 "use client"
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { HiArrowRight, HiDownload, HiMail } from 'react-icons/hi';
+import { HiCode, HiArrowRight, HiDownload, HiMail } from 'react-icons/hi';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { SiPython, SiNextdotjs, SiFastapi, SiPostgresql, SiTypescript, SiReact, SiDocker } from 'react-icons/si';
 import { config } from '@/config';
 import Link from 'next/link';
 import { BackgroundPresets } from '@/components/ui/background-effects';
 import { motion } from 'framer-motion';
+import SkillsShowcase from './SkillsShowcase';
 
 const containerAnimation = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.15
+      staggerChildren: 0.15,
+      delayChildren: 0.2
     }
   }
 };
 
 const itemAnimation = {
-  hidden: { opacity: 0, y: 18 },
+  hidden: { opacity: 0, y: 20 },
   show: {
     opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
-      ease: [0.25, 0.1, 0.25, 1.0]
+      ease: "easeOut"
     }
   }
 };
 
-const coreTech = [
-  { name: "Python", icon: <SiPython className="w-4 h-4 text-[#3776AB]" /> },
-  { name: "FastAPI", icon: <SiFastapi className="w-4 h-4 text-[#009688]" /> },
-  { name: "Next.js", icon: <SiNextdotjs className="w-4 h-4 text-white" /> },
-  { name: "TypeScript", icon: <SiTypescript className="w-4 h-4 text-[#3178C6]" /> },
-  { name: "React 18", icon: <SiReact className="w-4 h-4 text-[#61DAFB]" /> },
-  { name: "SQL Server & Postgres", icon: <SiPostgresql className="w-4 h-4 text-[#4169E1]" /> },
-  { name: "Docker", icon: <SiDocker className="w-4 h-4 text-[#2496ED]" /> },
-];
+const textAnimation = {
+  hidden: { opacity: 0, x: -20 },
+  show: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut"
+    }
+  }
+};
 
 const HeroSection = () => {
   return (
-    <section className="min-h-[calc(100vh-140px)] flex items-center justify-center relative py-12 md:py-20" id="hero">
+    <section className="min-h-[calc(100vh-140px)] flex flex-col items-center justify-center relative pt-8 pb-16">
       <BackgroundPresets.Minimal />
-
-      {/* Cyber Grid Subtle Overlay */}
-      <div className="absolute inset-0 bg-grid-cyber pointer-events-none opacity-40" />
-
-      {/* Ambient Radial Glows */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-gradient-to-tr from-cyan-500/10 via-purple-500/10 to-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <motion.div
           variants={containerAnimation}
           initial="hidden"
           animate="show"
-          className="max-w-4xl mx-auto text-center space-y-8"
+          className="max-w-3xl mx-auto text-center space-y-6 relative"
         >
-          {/* Engineering Availability Beacon */}
           <motion.div
             variants={itemAnimation}
-            className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full glass-panel text-xs sm:text-sm text-gray-200"
+            className="inline-flex items-center space-x-2 mirror-effect mirror-glow px-4 py-2 rounded-full text-white"
           >
-            <span className="relative flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-            </span>
-            <span className="font-mono text-[11px] sm:text-xs">
-              Available for Remote Engineering Roles
-            </span>
+            <HiCode className="w-5 h-5 text-white/90" />
+            <span className="text-sm font-medium text-white/90">Welcome to my portfolio</span>
           </motion.div>
 
-          {/* Identity & Headline */}
-          <div className="space-y-4">
+          <div className="space-y-3">
             <motion.h1
               variants={itemAnimation}
-              className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white"
+              className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-white"
             >
-              Hi, I'm <span className="text-white underline decoration-emerald-400/50 decoration-2 underline-offset-8">{config.developer.name}</span>
+              <motion.span
+                variants={textAnimation}
+                className="block mb-2"
+              >
+                Hi, I'm {config.developer.name}
+              </motion.span>
+              <motion.span
+                variants={textAnimation}
+                className="block text-white/70 text-xl sm:text-2xl md:text-3xl font-medium"
+              >
+                {config.developer.title}
+              </motion.span>
             </motion.h1>
-
-            <motion.h2
-              variants={itemAnimation}
-              className="text-lg sm:text-2xl md:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-gray-100 via-gray-300 to-gray-400 max-w-3xl mx-auto"
-            >
-              {config.developer.title}
-            </motion.h2>
           </div>
 
-          {/* Technical Introduction */}
           <motion.p
             variants={itemAnimation}
-            className="text-sm sm:text-base md:text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto font-normal"
+            className="text-sm sm:text-base md:text-lg text-white/70 leading-relaxed max-w-2xl mx-auto"
           >
-            I engineer high-integrity web platforms, resilient Python backends, and rigorous AI assessment workflows. Focused on Clean Architecture, server-enforced business logic, and empirical quality assurance.
+            {config.developer.shortBio}
           </motion.p>
 
-          {/* Primary CTAs */}
           <motion.div
             variants={itemAnimation}
-            className="flex flex-wrap items-center justify-center gap-3 pt-2"
+            className="flex flex-wrap gap-3 sm:gap-4 justify-center pt-2"
           >
             <Link href="/projects">
               <Button
-                className="rounded-full px-6 py-5 text-sm sm:text-base font-semibold bg-white text-gray-950 hover:bg-gray-200 transition-all shadow-xl hover:shadow-white/20"
+                variant="expandIcon"
+                Icon={HiArrowRight}
+                iconPlacement="right"
+                className="rounded-full px-6 py-6 text-sm sm:text-base font-semibold shadow-lg hover:scale-105 transition-transform"
               >
-                <span>View My Work</span>
-                <HiArrowRight className="ml-2 w-4 h-4" />
+                View Projects
               </Button>
             </Link>
 
@@ -122,7 +115,7 @@ const HeroSection = () => {
             >
               <Button
                 variant="outline"
-                className="rounded-full px-6 py-5 text-sm sm:text-base font-semibold border-white/20 hover:border-white/40 text-white bg-white/5 hover:bg-white/10 transition-all backdrop-blur-md"
+                className="rounded-full px-6 py-6 text-sm sm:text-base font-semibold mirror-effect mirror-glow text-white hover:text-white hover:bg-white/10 transition-all"
               >
                 <HiDownload className="mr-2 w-4 h-4" />
                 <span>Download CV</span>
@@ -132,18 +125,18 @@ const HeroSection = () => {
             <Link href="/contact">
               <Button
                 variant="ghost"
-                className="rounded-full px-5 py-5 text-sm sm:text-base font-medium text-gray-300 hover:text-white hover:bg-white/5 transition-all"
+                className="rounded-full px-5 py-6 text-sm sm:text-base font-medium text-white/80 hover:text-white hover:bg-white/5 transition-all"
               >
                 <HiMail className="mr-2 w-4 h-4" />
-                <span>Contact Me</span>
+                <span>Contact</span>
               </Button>
             </Link>
           </motion.div>
 
-          {/* Verified Profile Links */}
+          {/* Social links */}
           <motion.div
             variants={itemAnimation}
-            className="flex items-center justify-center gap-6 pt-1 text-sm text-gray-400"
+            className="flex items-center justify-center gap-6 pt-2 text-sm text-white/60"
           >
             <a
               href={config.social.githubUrl}
@@ -152,11 +145,11 @@ const HeroSection = () => {
               className="inline-flex items-center gap-2 hover:text-white transition-colors"
               aria-label="GitHub Profile"
             >
-              <FaGithub className="w-5 h-5" />
-              <span className="font-mono text-xs">github.com/{config.social.github}</span>
+              <FaGithub className="w-4 h-4" />
+              <span className="text-xs font-mono">github.com/{config.social.github}</span>
             </a>
 
-            <span className="text-gray-600">&bull;</span>
+            <span className="text-white/20">•</span>
 
             <a
               href={config.social.linkedin}
@@ -165,32 +158,24 @@ const HeroSection = () => {
               className="inline-flex items-center gap-2 hover:text-white transition-colors"
               aria-label="LinkedIn Profile"
             >
-              <FaLinkedin className="w-5 h-5 text-[#0A66C2]" />
-              <span className="text-xs">LinkedIn Profile</span>
+              <FaLinkedin className="w-4 h-4 text-[#0A66C2]" />
+              <span className="text-xs">LinkedIn</span>
             </a>
           </motion.div>
 
-          {/* Verified Core Technologies Strip */}
+          {/* Ambient Glow */}
           <motion.div
-            variants={itemAnimation}
-            className="pt-8 border-t border-white/10"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8, duration: 1 }}
+            className="absolute -z-10 inset-0 pointer-events-none"
           >
-            <p className="text-xs font-mono uppercase tracking-wider text-gray-400 mb-4">
-              Core Production Stack
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-              {coreTech.map((tech) => (
-                <div
-                  key={tech.name}
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl glass-panel text-xs sm:text-sm text-gray-300 hover:border-white/30 transition-all"
-                >
-                  {tech.icon}
-                  <span>{tech.name}</span>
-                </div>
-              ))}
-            </div>
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[450px] bg-primary/10 rounded-full blur-3xl" />
           </motion.div>
         </motion.div>
+
+        {/* Signature Bento Skills Showcase */}
+        <SkillsShowcase />
       </div>
     </section>
   );

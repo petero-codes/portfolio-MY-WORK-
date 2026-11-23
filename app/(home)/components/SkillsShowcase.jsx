@@ -2,8 +2,8 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { HiCode } from 'react-icons/hi';
-import { FaReact, FaNodeJs, FaGithub, FaAws } from 'react-icons/fa';
+import { HiCode, HiDatabase } from 'react-icons/hi';
+import { FaReact, FaNodeJs, FaGithub } from 'react-icons/fa';
 import { SiPython, SiFastapi, SiPostgresql, SiDocker, SiRedis, SiNextdotjs, SiTailwindcss, SiTypescript } from 'react-icons/si';
 
 const skills = [
@@ -16,7 +16,7 @@ const skills = [
     { name: "React.js", icon: <FaReact className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-1 row-span-1" },
     { name: "TypeScript", icon: <SiTypescript className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-1 row-span-1" },
     { name: "Node.js", icon: <FaNodeJs className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-1 row-span-1" },
-    { name: "AWS", icon: <FaAws className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-2 sm:col-span-1 md:col-span-2 row-span-1" },
+    { name: "SQL Server", icon: <HiDatabase className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-2 sm:col-span-1 md:col-span-2 row-span-1" },
     { name: "Tailwind", icon: <SiTailwindcss className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-1 row-span-1" },
     { name: "GitHub", icon: <FaGithub className="w-5 h-5 sm:w-6 sm:h-6" />, size: "col-span-1 row-span-1" },
 ];
@@ -51,28 +51,28 @@ const SkillsShowcase = () => {
             variants={containerAnimation}
             initial="hidden"
             animate="show"
-            className="w-full mt-20"
+            className="w-full mt-16 sm:mt-20"
         >
-            <div className="container mx-auto px-4 sm:px-6 md:px-8">
+            <div className="container mx-auto px-2 sm:px-6 md:px-8">
                 <motion.div 
                     variants={itemAnimation} 
-                    className="flex items-center gap-2 mb-8 sm:mb-12 justify-center"
+                    className="flex items-center gap-2 mb-8 sm:mb-10 justify-center"
                 >
-                    <div className="inline-flex items-center space-x-2 mirror-effect mirror-glow px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-primary">
-                        <HiCode className="w-4 h-4 sm:w-5 sm:h-5 text-primary" />
-                        <span className="text-xs sm:text-sm font-semibold text-primary">Tech Stack</span>
+                    <div className="inline-flex items-center space-x-2 mirror-effect mirror-glow px-4 py-2 sm:px-5 sm:py-2.5 rounded-full text-white">
+                        <HiCode className="w-4 h-4 sm:w-5 sm:h-5 text-white/90" />
+                        <span className="text-xs sm:text-sm font-semibold text-white/90">Tech Stack</span>
                     </div>
                 </motion.div>
 
                 <motion.div
                     variants={containerAnimation}
-                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4 w-full"
+                    className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4 w-full"
                     style={{ 
                         gridAutoRows: 'minmax(90px, auto)',
                         gridAutoFlow: 'row dense'
                     }}
                 >
-                {skills.map((skill, index) => (
+                {skills.map((skill) => (
                     <motion.div
                         key={skill.name}
                         variants={itemAnimation}
@@ -118,7 +118,7 @@ const SkillsShowcase = () => {
                                 
                                 {/* Skill name */}
                                 <div className="flex flex-col items-center gap-0.5 sm:gap-1 w-full px-0.5 sm:px-1">
-                                    <span className="text-[9px] sm:text-[10px] md:text-xs lg:text-sm font-bold text-white text-center tracking-tight transition-all duration-300 group-hover:text-white/90 break-words leading-tight">
+                                    <span className="text-[10px] sm:text-xs md:text-sm font-bold text-white text-center tracking-tight transition-all duration-300 group-hover:text-white/90 break-words leading-tight">
                                         {skill.name}
                                     </span>
                                     <div className="w-5 sm:w-6 md:w-8 h-0.5 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent rounded-full transition-all duration-300 group-hover:via-white/60" />
@@ -134,4 +134,3 @@ const SkillsShowcase = () => {
 };
 
 export default SkillsShowcase;
-
